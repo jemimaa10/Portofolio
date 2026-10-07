@@ -1,0 +1,122 @@
+/* =============================================
+   JEREMY FELIX PORTFOLIO - SHARED STYLES
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1a2e; }
+::-webkit-scrollbar-thumb { background: #f5a623; border-radius: 3px; }
+
+/* ---------- Accent Underline ---------- */
+.underline-accent {
+  position: relative;
+  display: inline-block;
+}
+.underline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #f5a623;
+}
+
+/* ---------- Nav Link Hover ---------- */
+.nav-link {
+  position: relative;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #f5a623;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* ---------- Card Hover ---------- */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Service Item ---------- */
+.service-item {
+  transition: background-color 0.3s ease;
+}
+.service-item:hover { background-color: #252540; }
+
+/* ---------- Mobile Menu ---------- */
+#mobile-menu { display: none; }
+#mobile-menu.open { display: block; }
+
+/* ---------- Page Fade-in ---------- */
+.page-content {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Section Title Divider ---------- */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background-color: #f5a623;
+  margin: 12px 0;
+}
+.section-divider.center { margin: 12px auto; }
+
+/* ---------- Skill Bar ---------- */
+.skill-bar-fill {
+  transition: width 1s ease-in-out;
+}
+
+/* ---------- Form Focus ---------- */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.3);
+}
+
+/* ---------- Btn Primary ---------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f5a623;
+  color: #0f0f1a;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #e09515;
+  transform: translateY(-1px);
+}
+
+/* ---------- Tag Badge ---------- */
+.tag {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background-color: #1a1a2e;
+  color: #9ca3af;
+  border: 1px solid #374151;
+}
