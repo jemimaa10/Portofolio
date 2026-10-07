@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeremy Felix | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-bg': '#1a1a2e',
+            'dark-card': '#16213e',
+            'dark-nav': '#0f0f1a',
+            'dark-section': '#1e1e30',
+            'accent': '#f5a623',
+            'accent-hover': '#e09515',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    .underline-accent {
+      position: relative;
+      display: inline-block;
+    }
+    .underline-accent::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: #f5a623;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #f5a623;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .service-item {
+      transition: background-color 0.3s ease;
+    }
+    .service-item:hover {
+      background-color: #252540;
+    }
+    /* Mobile menu toggle */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a1a2e; }
+    ::-webkit-scrollbar-thumb { background: #f5a623; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-dark-bg text-white font-sans">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="bg-dark-nav fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <span class="bg-accent text-dark-nav font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
+        <span class="text-white font-bold text-lg">Jeremy</span>
+      </div>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
+        <a href="#home" class="nav-link text-accent font-medium">Home</a>
+        <a href="#portfolio" class="nav-link hover:text-white transition">Portfolio</a>
+        <a href="#services" class="nav-link hover:text-white transition">Services</a>
+        <a href="#about" class="nav-link hover:text-white transition">About</a>
+        <a href="#contact" class="nav-link hover:text-white transition">Contact</a>
+      </div>
+
+      <!-- Right Icons -->
+      <div class="hidden md:flex items-center gap-4 text-gray-300">
+        <a href="https://github.com/jemimaa10" target="_blank" class="hover:text-accent transition"><i class="fab fa-github text-lg"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="hover:text-accent transition"><i class="fab fa-linkedin text-lg"></i></a>
+        <button id="menu-btn" class="hover:text-accent transition"><i class="fas fa-bars text-lg"></i></button>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-accent">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-dark-nav border-t border-gray-800 px-6 py-4">
+      <div class="flex flex-col gap-4 text-sm text-gray-300">
+        <a href="#home" class="hover:text-accent transition">Home</a>
+        <a href="#portfolio" class="hover:text-accent transition">Portfolio</a>
+        <a href="#services" class="hover:text-accent transition">Services</a>
+        <a href="#about" class="hover:text-accent transition">About</a>
+        <a href="#contact" class="hover:text-accent transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section id="home" class="min-h-screen bg-dark-nav pt-24 pb-0 flex items-center">
+    <div class="max-w-6xl mx-auto px-6 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+        <!-- Left Content -->
+        <div>
+          <p class="text-gray-400 text-lg mb-1">I'm</p>
+          <h1 class="underline-accent text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
+            Jeremy Felix
+          </h1>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
+            Mahasiswa Software Engineering semester 5 yang passionate di bidang web development, mobile development, dan UI/UX design. Sedang mencari kesempatan magang enrichment untuk mengembangkan skill dan berkontribusi nyata.
+          </p>
+          <a href="#portfolio" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-dark-nav font-semibold px-6 py-3 rounded-lg transition text-sm">
+            Lihat Portfolio <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+
+          <!-- Social Links -->
+          <div class="flex items-center gap-4 mt-8">
+            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://github.com/jemimaa10" target="_blank" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Photo Placeholder + Services Card -->
+        <div class="flex flex-col items-center gap-6">
+
+          <!-- Photo Placeholder -->
+          <div class="relative">
+            <div class="w-64 h-72 md:w-72 md:h-80 bg-dark-section rounded-2xl border-2 border-dashed border-gray-600 flex flex-col items-center justify-center text-gray-500 overflow-hidden">
+              <i class="fas fa-user text-6xl mb-3 text-gray-600"></i>
+              <p class="text-sm text-gray-500 font-medium">Foto Kamu Di Sini</p>
+              <p class="text-xs text-gray-600 mt-1">Ganti dengan foto profilmu</p>
+            </div>
+            <!-- Decorative circle -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-dark-section opacity-50 -z-10"></div>
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-accent opacity-10 -z-10"></div>
+          </div>
+
+          <!-- Services mini card -->
+          <div class="bg-dark-section rounded-xl p-5 w-full max-w-xs border border-gray-700">
+            <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Services</p>
+            <p class="text-white font-bold text-base leading-snug mb-3">
+              Let's build quality products in programming and design with my services
+            </p>
+            <a href="#services" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all">
+              show more <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Company Logos Bar -->
+      <div class="mt-12 bg-dark-section rounded-xl py-5 px-8 flex flex-wrap items-center justify-around gap-6 border border-gray-700">
+        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition">
+          <i class="fab fa-meta text-xl text-blue-400"></i>
+          <span class="font-semibold text-sm">Meta</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition">
+          <span class="font-bold text-sm"><span class="text-blue-400">G</span><span class="text-red-400">o</span><span class="text-yellow-400">o</span><span class="text-blue-400">g</span><span class="text-green-400">l</span><span class="text-red-400">e</span></span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition">
+          <i class="fab fa-linkedin text-xl text-blue-500"></i>
+          <span class="font-semibold text-sm">LinkedIn</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition">
+          <i class="fab fa-slack text-xl text-purple-400"></i>
+          <span class="font-semibold text-sm">Slack</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition">
+          <i class="fab fa-github text-xl"></i>
+          <span class="font-semibold text-sm">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT CAN I DO ===================== -->
+  <section id="services" class="py-20 bg-dark-bg">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+        <!-- Left: Stats -->
+        <div>
+          <h2 class="text-3xl md:text-4xl font-black text-white mb-3 leading-tight">
+            What Can I Do For<br/>Your Needs
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8 max-w-xs">
+            Saya siap membantu kebutuhan teknologi Anda dengan dedikasi penuh dan hasil yang berkualitas. Berbasis pada pengalaman belajar dan proyek nyata.
+          </p>
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-accent font-black text-3xl">10+</p>
+              <p class="text-gray-400 text-xs mt-1">Proyek Selesai</p>
+            </div>
+            <div>
+              <p class="text-accent font-black text-3xl">5+</p>
+              <p class="text-gray-400 text-xs mt-1">Kolaborasi Tim</p>
+            </div>
+            <div>
+              <p class="text-accent font-black text-3xl">3+</p>
+              <p class="text-gray-400 text-xs mt-1">Pengalaman Freelance</p>
+            </div>
+            <div>
+              <p class="text-accent font-black text-3xl">2+</p>
+              <p class="text-gray-400 text-xs mt-1">Tahun Belajar Coding</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Service Items -->
+        <div class="flex flex-col gap-3">
+
+          <div class="service-item bg-dark-section rounded-xl p-4 flex items-center gap-4 border border-gray-700 cursor-pointer">
+            <div class="w-16 h-16 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <i class="fas fa-paint-brush text-accent text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-white font-semibold text-sm">UI/UX Design</p>
+              <p class="text-gray-400 text-xs">5 Project</p>
+            </div>
+            <i class="fas fa-arrow-right text-accent text-sm"></i>
+          </div>
+
+          <div class="service-item bg-dark-section rounded-xl p-4 flex items-center gap-4 border border-gray-700 cursor-pointer">
+            <div class="w-16 h-16 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <i class="fas fa-code text-accent text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-white font-semibold text-sm">Front End Development</p>
+              <p class="text-gray-400 text-xs">6 Project</p>
+            </div>
+            <i class="fas fa-arrow-right text-accent text-sm"></i>
+          </div>
+
+          <div class="service-item bg-dark-section rounded-xl p-4 flex items-center gap-4 border border-gray-700 cursor-pointer">
+            <div class="w-16 h-16 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <i class="fas fa-mobile-alt text-accent text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-white font-semibold text-sm">Mobile App Development</p>
+              <p class="text-gray-400 text-xs">3 Project</p>
+            </div>
+            <i class="fas fa-arrow-right text-accent text-sm"></i>
+          </div>
+
+          <div class="service-item bg-dark-section rounded-xl p-4 flex items-center gap-4 border border-gray-700 cursor-pointer">
+            <div class="w-16 h-16 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <i class="fas fa-server text-accent text-2xl"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-white font-semibold text-sm">Back End Development</p>
+              <p class="text-gray-400 text-xs">4 Project</p>
+            </div>
+            <i class="fas fa-arrow-right text-accent text-sm"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICE CARDS ===================== -->
+  <section class="py-16 bg-dark-section">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="card-hover bg-dark-card rounded-xl p-6 border border-gray-700">
+          <div class="w-12 h-12 rounded-lg bg-dark-bg flex items-center justify-center mb-5">
+            <i class="fas fa-paint-brush text-accent text-xl"></i>
+          </div>
+          <h3 class="text-white font-bold text-lg mb-3">UI/UX Design</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Merancang tampilan yang cantik, mudah digunakan, dan memberikan pengalaman terbaik bagi pengguna aplikasi.
+          </p>
+          <a href="#" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all">
+            show more <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-hover bg-dark-card rounded-xl p-6 border border-gray-700">
+          <div class="w-12 h-12 rounded-lg bg-dark-bg flex items-center justify-center mb-5">
+            <i class="fas fa-laptop-code text-accent text-xl"></i>
+          </div>
+          <h3 class="text-white font-bold text-lg mb-3">Web Programming</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Membangun website berkualitas tinggi dengan teknologi terbaik dan dioptimalkan untuk performa serta SEO.
+          </p>
+          <a href="#" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all">
+            show more <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-hover bg-dark-card rounded-xl p-6 border border-gray-700">
+          <div class="w-12 h-12 rounded-lg bg-dark-bg flex items-center justify-center mb-5">
+            <i class="fas fa-mobile-alt text-accent text-xl"></i>
+          </div>
+          <h3 class="text-white font-bold text-lg mb-3">Mobile Development</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Membuat aplikasi mobile untuk iOS maupun Android demi performa bisnis yang lebih professional dan modern.
+          </p>
+          <a href="#" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all">
+            show more <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PORTFOLIO SECTION ===================== -->
+  <section id="portfolio" class="py-20 bg-dark-bg">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-accent text-sm uppercase tracking-widest mb-2">My Work</p>
+        <h2 class="text-3xl md:text-4xl font-black text-white">Portfolio Saya</h2>
+        <div class="w-12 h-1 bg-accent mx-auto mt-3"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Project 1 -->
+        <div class="card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group">
+          <div class="h-40 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center">
+            <i class="fas fa-globe text-5xl text-white opacity-40 group-hover:opacity-70 transition"></i>
+          </div>
+          <div class="p-5">
+            <span class="text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">Web App</span>
+            <h3 class="text-white font-bold text-base mt-3 mb-2">Sistem Informasi Kampus</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">Aplikasi web untuk manajemen data mahasiswa dan akademik.</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Laravel</span>
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">MySQL</span>
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Tailwind</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group">
+          <div class="h-40 bg-gradient-to-br from-green-900 to-teal-900 flex items-center justify-center">
+            <i class="fas fa-mobile-alt text-5xl text-white opacity-40 group-hover:opacity-70 transition"></i>
+          </div>
+          <div class="p-5">
+            <span class="text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">Mobile App</span>
+            <h3 class="text-white font-bold text-base mt-3 mb-2">Aplikasi To-Do List</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">Aplikasi manajemen tugas berbasis Flutter dengan Firebase.</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Flutter</span>
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Firebase</span>
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Dart</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group">
+          <div class="h-40 bg-gradient-to-br from-orange-900 to-red-900 flex items-center justify-center">
+            <i class="fas fa-paint-brush text-5xl text-white opacity-40 group-hover:opacity-70 transition"></i>
+          </div>
+          <div class="p-5">
+            <span class="text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">UI/UX</span>
+            <h3 class="text-white font-bold text-base mt-3 mb-2">E-Commerce App Design</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">Desain antarmuka toko online modern dan user-friendly di Figma.</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Figma</span>
+              <span class="text-xs bg-dark-bg text-gray-400 px-2 py-1 rounded border border-gray-700">Prototyping</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS SECTION ===================== -->
+  <section class="py-16 bg-dark-section">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-accent text-sm uppercase tracking-widest mb-2">Tech Stack</p>
+        <h2 class="text-3xl font-black text-white">Skills & Teknologi</h2>
+        <div class="w-12 h-1 bg-accent mx-auto mt-3"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-html5 text-4xl text-orange-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">HTML5</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-css3-alt text-4xl text-blue-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">CSS3</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-js-square text-4xl text-yellow-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">JavaScript</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-react text-4xl text-cyan-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">React</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-laravel text-4xl text-red-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">Laravel</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-php text-4xl text-indigo-400 mb-3"></i>
+          <p class="text-white text-sm font-medium">PHP</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-python text-4xl text-yellow-300 mb-3"></i>
+          <p class="text-white text-sm font-medium">Python</p>
+        </div>
+        <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+          <i class="fab fa-git-alt text-4xl text-orange-500 mb-3"></i>
+          <p class="text-white text-sm font-medium">Git</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT SECTION ===================== -->
+  <section id="about" class="py-20 bg-dark-bg">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+        <!-- About Photo Placeholder -->
+        <div class="flex justify-center">
+          <div class="relative">
+            <div class="w-72 h-80 bg-dark-section rounded-2xl border-2 border-dashed border-gray-600 flex flex-col items-center justify-center text-gray-500">
+              <i class="fas fa-user text-6xl mb-3 text-gray-600"></i>
+              <p class="text-sm text-gray-500 font-medium">Foto Kamu Di Sini</p>
+            </div>
+            <div class="absolute -bottom-3 -right-3 w-full h-full rounded-2xl border-2 border-accent opacity-20 -z-10"></div>
+          </div>
+        </div>
+
+        <!-- About Content -->
+        <div>
+          <p class="text-accent text-sm uppercase tracking-widest mb-2">About Me</p>
+          <h2 class="text-3xl font-black text-white mb-4">Kenalan Yuk!</h2>
+          <div class="w-12 h-1 bg-accent mb-6"></div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Halo! Nama saya <span class="text-white font-semibold">Jeremy Felix</span>, mahasiswa Software Engineering semester 5 yang sedang mempersiapkan diri untuk program <span class="text-accent">enrichment magang</span>.
+          </p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Saya memiliki passion yang besar di bidang pengembangan perangkat lunak, khususnya web dan mobile development. Saya percaya bahwa teknologi yang baik harus mudah digunakan dan memberikan nilai nyata bagi penggunanya.
+          </p>
+
+          <!-- Info List -->
+          <div class="space-y-3 mb-8">
+            <div class="flex gap-3 items-center">
+              <i class="fas fa-graduation-cap text-accent text-sm w-5"></i>
+              <span class="text-gray-300 text-sm">Software Engineering, Semester 5</span>
+            </div>
+            <div class="flex gap-3 items-center">
+              <i class="fas fa-map-marker-alt text-accent text-sm w-5"></i>
+              <span class="text-gray-300 text-sm">Jakarta, Indonesia</span>
+            </div>
+            <div class="flex gap-3 items-center">
+              <i class="fas fa-envelope text-accent text-sm w-5"></i>
+              <span class="text-gray-300 text-sm">jeremyfelix200506@gmail.com</span>
+            </div>
+            <div class="flex gap-3 items-center">
+              <i class="fab fa-github text-accent text-sm w-5"></i>
+              <a href="https://github.com/jemimaa10" target="_blank" class="text-gray-300 text-sm hover:text-accent transition">github.com/jemimaa10</a>
+            </div>
+          </div>
+
+          <a href="#contact" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-dark-nav font-semibold px-6 py-3 rounded-lg transition text-sm">
+            Hubungi Saya <i class="fas fa-paper-plane text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT SECTION ===================== -->
+  <section id="contact" class="py-20 bg-dark-section">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-accent text-sm uppercase tracking-widest mb-2">Get In Touch</p>
+        <h2 class="text-3xl font-black text-white">Hubungi Saya</h2>
+        <div class="w-12 h-1 bg-accent mx-auto mt-3 mb-4"></div>
+        <p class="text-gray-400 text-sm">Tertarik untuk berkolaborasi atau punya peluang magang? Jangan ragu untuk menghubungi saya!</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Contact Info -->
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-envelope text-accent"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 mb-1">Email</p>
+              <p class="text-white text-sm font-medium">jeremyfelix200506@gmail.com</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0">
+              <i class="fab fa-linkedin text-accent"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 mb-1">LinkedIn</p>
+              <p class="text-white text-sm font-medium">Jeremy Felix</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0">
+              <i class="fab fa-github text-accent"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 mb-1">GitHub</p>
+              <a href="https://github.com/jemimaa10" target="_blank" class="text-white text-sm font-medium hover:text-accent transition">github.com/jemimaa10</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="bg-dark-bg rounded-xl p-6 border border-gray-700 space-y-4">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Nama</label>
+            <input type="text" placeholder="Nama Anda" class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Email</label>
+            <input type="email" placeholder="email@anda.com" class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Pesan</label>
+            <textarea rows="4" placeholder="Tulis pesan Anda..." class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-accent hover:bg-accent-hover text-dark-nav font-semibold py-3 rounded-lg transition text-sm flex items-center justify-center gap-2">
+            Kirim Pesan <i class="fas fa-paper-plane text-xs"></i>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-dark-nav py-8 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="bg-accent text-dark-nav font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
+        <span class="text-white font-bold">Jeremy Felix</span>
+      </div>
+      <p class="text-gray-500 text-xs text-center">
+        &copy; 2025 Jeremy Felix. Dibuat dengan ❤️ untuk enrichment magang.
+      </p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-gray-500 hover:text-accent transition text-sm"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-500 hover:text-accent transition text-sm"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-gray-500 hover:text-accent transition text-sm"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/jemimaa10" target="_blank" class="text-gray-500 hover:text-accent transition text-sm"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BACK TO TOP ===================== -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    class="fixed bottom-6 right-6 w-10 h-10 bg-accent hover:bg-accent-hover text-dark-nav rounded-full flex items-center justify-center shadow-lg transition opacity-0 pointer-events-none"
+    style="transition: opacity 0.3s;">
+    <i class="fas fa-chevron-up text-sm"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.pointerEvents = 'auto';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.pointerEvents = 'none';
+      }
+    });
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('text-accent');
+        link.classList.add('text-gray-300');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('text-accent');
+          link.classList.remove('text-gray-300');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
