@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jeremy Felix | Home</title>
+  <title>Jeremy Felix | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -24,21 +24,21 @@
     }
   </script>
 </head>
-<body class="bg-dark-nav text-white">
+<body class="bg-dark-bg text-white">
 
-  <!-- ===================== NAVBAR ===================== -->
+  <!-- ===== NAVBAR ===== -->
   <nav class="bg-dark-nav fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
+      <a href="#home" class="flex items-center gap-2">
         <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
         <span class="text-white font-bold text-lg">Jeremy</span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm">
-        <a href="index.html"     class="nav-link active text-accent font-semibold">Home</a>
-        <a href="portfolio.html" class="nav-link text-gray-300 hover:text-white">Portfolio</a>
-        <a href="services.html"  class="nav-link text-gray-300 hover:text-white">Services</a>
-        <a href="about.html"     class="nav-link text-gray-300 hover:text-white">About</a>
-        <a href="contact.html"   class="nav-link text-gray-300 hover:text-white">Contact</a>
+        <a href="#home"      class="nav-link text-gray-300 hover:text-white">Home</a>
+        <a href="#portfolio" class="nav-link text-gray-300 hover:text-white">Portfolio</a>
+        <a href="#services"  class="nav-link text-gray-300 hover:text-white">Services</a>
+        <a href="#about"     class="nav-link text-gray-300 hover:text-white">About</a>
+        <a href="#contact"   class="nav-link text-gray-300 hover:text-white">Contact</a>
       </div>
       <div class="hidden md:flex items-center gap-4 text-gray-400">
         <a href="https://github.com/jemimaa10" target="_blank" class="hover:text-accent transition"><i class="fab fa-github text-lg"></i></a>
@@ -50,174 +50,30 @@
     </div>
     <div id="mobile-menu" class="md:hidden bg-dark-nav border-t border-gray-800 px-6 py-4">
       <div class="flex flex-col gap-4 text-sm">
-        <a href="index.html"     class="text-accent font-semibold">Home</a>
-        <a href="portfolio.html" class="text-gray-300 hover:text-accent transition">Portfolio</a>
-        <a href="services.html"  class="text-gray-300 hover:text-accent transition">Services</a>
-        <a href="about.html"     class="text-gray-300 hover:text-accent transition">About</a>
-        <a href="contact.html"   class="text-gray-300 hover:text-accent transition">Contact</a>
+        <a href="#home"      class="text-gray-300 hover:text-accent transition">Home</a>
+        <a href="#portfolio" class="text-gray-300 hover:text-accent transition">Portfolio</a>
+        <a href="#services"  class="text-gray-300 hover:text-accent transition">Services</a>
+        <a href="#about"     class="text-gray-300 hover:text-accent transition">About</a>
+        <a href="#contact"   class="text-gray-300 hover:text-accent transition">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
-  <section class="min-h-screen pt-24 pb-0 flex items-center page-content">
-    <div class="max-w-6xl mx-auto px-6 w-full">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+   
+  <div id="section-home"></div>
+  <div id="section-portfolio"></div>
+  <div id="section-services"></div>
+  <div id="section-about"></div>
+  <div id="section-contact"></div>
 
-        <!-- Left -->
-        <div>
-          <p class="text-gray-400 text-lg mb-1">I'm</p>
-          <h1 class="underline-accent text-5xl md:text-6xl font-black text-white leading-tight mb-8">
-            Jeremy Felix
-          </h1>
-          <p class="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
-            Mahasiswa Software Engineering semester 5 yang passionate di bidang web development, mobile development, dan UI/UX design. Mencari kesempatan <span class="text-accent font-semibold">enrichment magang</span> untuk berkontribusi nyata.
-          </p>
-          <div class="flex flex-wrap gap-3 mb-10">
-            <a href="portfolio.html" class="btn-primary">
-              Lihat Portfolio <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-            <a href="contact.html" class="inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-dark-nav font-semibold text-sm px-6 py-3 rounded-lg transition">
-              Hubungi Saya
-            </a>
-          </div>
-          <!-- Social Links -->
-          <div class="flex items-center gap-3">
-            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm"><i class="fab fa-twitter"></i></a>
-            <a href="https://github.com/jemimaa10" target="_blank" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm"><i class="fab fa-github"></i></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-dark-section flex items-center justify-center text-gray-400 hover:text-accent hover:bg-gray-700 transition text-sm"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-
-        <!-- Right: Photo + Mini Card -->
-        <div class="flex flex-col items-center gap-6">
-          <!-- Photo Placeholder -->
-          <div class="relative">
-            <div class="w-64 h-72 md:w-72 md:h-80 bg-dark-section rounded-2xl border-2 border-dashed border-gray-600 flex flex-col items-center justify-center overflow-hidden">
-              <!-- ========= GANTI DENGAN FOTO KAMU ========= -->
-              <!-- <img src="assets/foto.jpg" alt="Jeremy Felix" class="w-full h-full object-cover" /> -->
-              <i class="fas fa-user text-7xl text-gray-700 mb-3"></i>
-              <p class="text-sm text-gray-500 font-medium">Foto Kamu</p>
-              <p class="text-xs text-gray-600 mt-1">Ganti src img di atas</p>
-              <!-- ============================================ -->
-            </div>
-            <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-dark-section opacity-50 -z-10"></div>
-            <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-accent opacity-10 -z-10"></div>
-          </div>
-
-          <!-- Mini Service Card -->
-          <div class="bg-dark-section rounded-xl p-5 w-full max-w-xs border border-gray-700">
-            <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Services</p>
-            <p class="text-white font-bold text-base leading-snug mb-3">
-              Let's build quality products in programming & design
-            </p>
-            <a href="services.html" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all">
-              show more <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Company Logos Bar -->
-      <div class="mt-14 bg-dark-section rounded-xl py-5 px-8 flex flex-wrap items-center justify-around gap-6 border border-gray-700">
-        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-          <i class="fab fa-meta text-xl text-blue-400"></i>
-          <span class="font-semibold text-sm">Meta</span>
-        </div>
-        <div class="flex items-center gap-1 cursor-pointer">
-          <span class="font-bold text-sm"><span class="text-blue-400">G</span><span class="text-red-400">o</span><span class="text-yellow-400">o</span><span class="text-blue-400">g</span><span class="text-green-400">l</span><span class="text-red-400">e</span></span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-          <i class="fab fa-linkedin text-xl text-blue-500"></i>
-          <span class="font-semibold text-sm">LinkedIn</span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-          <i class="fab fa-slack text-xl text-purple-400"></i>
-          <span class="font-semibold text-sm">Slack</span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-300 hover:text-white transition cursor-pointer">
-          <i class="fab fa-github text-xl"></i>
-          <span class="font-semibold text-sm">GitHub</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== STATS STRIP ===================== -->
-  <section class="py-14 bg-dark-bg">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="bg-dark-section rounded-xl p-6 border border-gray-700">
-          <p class="text-accent font-black text-4xl">10+</p>
-          <p class="text-gray-400 text-xs mt-2">Proyek Selesai</p>
-        </div>
-        <div class="bg-dark-section rounded-xl p-6 border border-gray-700">
-          <p class="text-accent font-black text-4xl">5+</p>
-          <p class="text-gray-400 text-xs mt-2">Kolaborasi Tim</p>
-        </div>
-        <div class="bg-dark-section rounded-xl p-6 border border-gray-700">
-          <p class="text-accent font-black text-4xl">3+</p>
-          <p class="text-gray-400 text-xs mt-2">Freelance Contract</p>
-        </div>
-        <div class="bg-dark-section rounded-xl p-6 border border-gray-700">
-          <p class="text-accent font-black text-4xl">2+</p>
-          <p class="text-gray-400 text-xs mt-2">Tahun Pengalaman</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== QUICK SERVICES PREVIEW ===================== -->
-  <section class="py-14 bg-dark-section">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-        <div>
-          <p class="text-accent text-xs uppercase tracking-widest mb-1">What I Do</p>
-          <h2 class="text-3xl font-black text-white">Layanan Utama</h2>
-          <div class="section-divider mt-3"></div>
-        </div>
-        <a href="services.html" class="text-accent text-sm flex items-center gap-1 hover:gap-2 transition-all self-start md:self-auto">
-          Lihat Semua <i class="fas fa-arrow-right text-xs"></i>
-        </a>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="card-hover bg-dark-bg rounded-xl p-6 border border-gray-700">
-          <div class="w-12 h-12 rounded-lg bg-dark-nav flex items-center justify-center mb-4">
-            <i class="fas fa-paint-brush text-accent text-xl"></i>
-          </div>
-          <h3 class="text-white font-bold text-base mb-2">UI/UX Design</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Merancang tampilan yang cantik dan mudah digunakan.</p>
-          <a href="services.html" class="text-accent text-xs flex items-center gap-1 hover:gap-2 transition-all">show more <i class="fas fa-arrow-right text-xs"></i></a>
-        </div>
-        <div class="card-hover bg-dark-bg rounded-xl p-6 border border-gray-700">
-          <div class="w-12 h-12 rounded-lg bg-dark-nav flex items-center justify-center mb-4">
-            <i class="fas fa-laptop-code text-accent text-xl"></i>
-          </div>
-          <h3 class="text-white font-bold text-base mb-2">Web Programming</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Membangun website modern, cepat, dan dioptimalkan.</p>
-          <a href="services.html" class="text-accent text-xs flex items-center gap-1 hover:gap-2 transition-all">show more <i class="fas fa-arrow-right text-xs"></i></a>
-        </div>
-        <div class="card-hover bg-dark-bg rounded-xl p-6 border border-gray-700">
-          <div class="w-12 h-12 rounded-lg bg-dark-nav flex items-center justify-center mb-4">
-            <i class="fas fa-mobile-alt text-accent text-xl"></i>
-          </div>
-          <h3 class="text-white font-bold text-base mb-2">Mobile Development</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Membuat aplikasi mobile iOS & Android yang profesional.</p>
-          <a href="services.html" class="text-accent text-xs flex items-center gap-1 hover:gap-2 transition-all">show more <i class="fas fa-arrow-right text-xs"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="bg-dark-nav py-8 border-t border-gray-800">
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
         <span class="text-white font-bold">Jeremy Felix</span>
       </div>
-      <p class="text-gray-600 text-xs">&copy; 2025 Jeremy Felix. Dibuat dengan ❤️ untuk enrichment magang.</p>
+      <p class="text-gray-600 text-xs">&copy; 2026 Jeremy Felix.</p>
       <div class="flex gap-4">
         <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-instagram text-sm"></i></a>
         <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-twitter text-sm"></i></a>
@@ -227,12 +83,13 @@
     </div>
   </footer>
 
-  <!-- Back to top -->
+  <!-- Back to Top -->
   <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
     class="fixed bottom-6 right-6 w-10 h-10 bg-accent hover:bg-accent-hover text-dark-nav rounded-full flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
     <i class="fas fa-chevron-up text-sm"></i>
   </button>
 
   <script src="js/main.js"></script>
+  <script src="js/loader.js"></script>
 </body>
 </html>

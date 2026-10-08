@@ -1,0 +1,112 @@
+<!-- ================================================
+     SECTION: CONTACT
+     Edit file ini untuk mengubah info kontak & form
+     ================================================ -->
+<section id="contact" class="py-20 bg-dark-section">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <p class="text-accent text-xs uppercase tracking-widest mb-2">Get In Touch</p>
+      <h2 class="text-3xl md:text-4xl font-black text-white">Contact</h2>
+      <div class="section-divider center"></div>
+      <p class="text-gray-400 text-sm mt-4 max-w-md mx-auto">Tertarik berkolaborasi atau punya peluang magang? Jangan ragu menghubungi saya!</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Info Kontak -->
+      <div>
+        <h3 class="text-2xl font-black text-white mb-2">Mari Terhubung</h3>
+        <div class="section-divider mb-6"></div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8">
+          Saya terbuka untuk diskusi mengenai peluang magang, kolaborasi proyek, maupun sekadar ngobrol seputar teknologi!
+        </p>
+        <div class="space-y-4">
+          <a href="mailto:jeremyfelix200506@gmail.com" class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700 hover:border-accent transition group">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition">
+              <i class="fas fa-envelope text-accent group-hover:text-dark-nav transition"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Email</p>
+              <p class="text-white text-sm font-medium">jeremyfelix200506@gmail.com</p>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 group-hover:text-accent ml-auto transition"></i>
+          </a>
+          <a href="https://github.com/jemimaa10" target="_blank" class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700 hover:border-accent transition group">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition">
+              <i class="fab fa-github text-accent group-hover:text-dark-nav transition"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 mb-1">GitHub</p>
+              <p class="text-white text-sm font-medium">github.com/jemimaa10</p>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 group-hover:text-accent ml-auto transition"></i>
+          </a>
+          <a href="#" class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700 hover:border-accent transition group">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition">
+              <i class="fab fa-linkedin-in text-accent group-hover:text-dark-nav transition"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 mb-1">LinkedIn</p>
+              <p class="text-white text-sm font-medium">Jeremy Felix</p>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 group-hover:text-accent ml-auto transition"></i>
+          </a>
+          <a href="#" class="flex items-center gap-4 bg-dark-bg rounded-xl p-5 border border-gray-700 hover:border-accent transition group">
+            <div class="w-12 h-12 rounded-full bg-dark-section flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition">
+              <i class="fab fa-instagram text-accent group-hover:text-dark-nav transition"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Instagram</p>
+              <p class="text-white text-sm font-medium">@username</p>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 group-hover:text-accent ml-auto transition"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="bg-dark-bg rounded-xl p-7 border border-gray-700">
+        <h3 class="text-xl font-bold text-white mb-6">Kirim Pesan</h3>
+        <form id="contact-form" class="space-y-5">
+          <div>
+            <label class="text-xs text-gray-400 mb-2 block font-medium">Nama Lengkap</label>
+            <input type="text" placeholder="Nama Anda" required
+              class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-2 block font-medium">Email</label>
+            <input type="email" placeholder="email@anda.com" required
+              class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-2 block font-medium">Subjek</label>
+            <select class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition">
+              <option value="magang">Peluang Magang</option>
+              <option value="kolaborasi">Kolaborasi Proyek</option>
+              <option value="freelance">Proyek Freelance</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-2 block font-medium">Pesan</label>
+            <textarea rows="5" placeholder="Tulis pesan Anda di sini..." required
+              class="w-full bg-dark-section border border-gray-600 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-accent transition resize-none"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full bg-accent hover:bg-accent-hover text-dark-nav font-bold py-3 rounded-lg transition text-sm flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane text-xs"></i> Kirim Pesan
+          </button>
+        </form>
+        <!-- Pesan Sukses -->
+        <div id="success-msg" class="hidden mt-4 bg-green-900 border border-green-700 rounded-lg p-4 text-center">
+          <i class="fas fa-check-circle text-green-400 text-2xl mb-2"></i>
+          <p class="text-green-300 text-sm font-medium">Pesan berhasil dikirim!</p>
+          <p class="text-green-500 text-xs mt-1">Saya akan segera membalas pesan Anda.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
