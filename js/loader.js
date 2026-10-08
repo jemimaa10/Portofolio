@@ -14,7 +14,7 @@ const sections = [
 async function loadSections() {
   for (const section of sections) {
     try {
-      const res  = await fetch(section.file);
+      const res  = await fetch(`${section.file}?t=${Date.now()}`, { cache: 'no-cache' });
       const html = await res.text();
       document.getElementById(section.id).innerHTML = html;
     } catch (err) {
