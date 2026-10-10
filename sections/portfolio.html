@@ -1,6 +1,6 @@
 <!-- ================================================
-     SECTION: PORTFOLIO
-     Edit file ini untuk menambah/ubah project
+     SECTION: PORTFOLIO (3 PROYEK + POP-UP MODAL)
+     Edit file ini untuk mengubah proyek & modal pop-up
      ================================================ -->
 <section id="portfolio" class="py-20 bg-dark-bg">
   <div class="max-w-6xl mx-auto px-6">
@@ -13,129 +13,122 @@
       <p class="text-gray-400 text-sm mt-4 max-w-md mx-auto">Some of my recent works</p>
     </div>
 
-    <!-- Filter Buttons -->
+    <!-- Filter Buttons (untuk 3 proyek) -->
     <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-btns">
-      <button data-filter="all"     class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-accent text-dark-nav transition">Semua</button>
-      <button data-filter="web"     class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">Web App</button>
-      <button data-filter="mobile"  class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">Mobile App</button>
-      <button data-filter="uiux"    class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">UI/UX</button>
-      <button data-filter="backend" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">Back End</button>
+      <button data-filter="all"    class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-accent text-dark-nav transition">Semua</button>
+      <button data-filter="web"    class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">Web App</button>
+      <button data-filter="mobile" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">Mobile App</button>
+      <button data-filter="uiux"   class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-dark-section text-gray-300 hover:bg-gray-700 transition">UI/UX</button>
     </div>
 
-    <!-- Project Grid -->
+    <!-- Project Grid (Hanya 3 Proyek) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
 
-      <!-- Project 1 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="web">
-        <div class="h-44 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-globe text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">Web App</span>
+      <!-- Project 1: Web App -->
+      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group flex flex-col justify-between" data-category="web">
+        <div>
+          <div class="h-44 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center relative overflow-hidden cursor-pointer" onclick="openProjectModal('proj-1')">
+            <i class="fas fa-globe text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
+            <span class="absolute top-3 right-3 text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">Web App</span>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span class="text-xs bg-accent text-dark-nav font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+                <i class="fas fa-expand-alt text-xs"></i> Buka Pop-up
+              </span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-base mb-2 cursor-pointer hover:text-accent transition" onclick="openProjectModal('proj-1')">
+              Sistem Informasi Kampus
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+              Aplikasi web untuk manajemen data mahasiswa, jadwal kuliah, dan nilai akademik berbasis Laravel.
+            </p>
+            <div class="flex gap-2 flex-wrap mb-5">
+              <span class="tag">Laravel</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Tailwind</span>
+            </div>
+          </div>
         </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">Sistem Informasi Kampus</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Aplikasi web untuk manajemen data mahasiswa, jadwal kuliah, dan nilai akademik berbasis Laravel.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Tailwind</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Demo</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="mobile">
-        <div class="h-44 bg-gradient-to-br from-green-900 to-teal-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-mobile-alt text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-green-500 text-dark-nav font-semibold px-2 py-1 rounded">Mobile App</span>
-        </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">Aplikasi To-Do List</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Manajemen tugas harian dengan fitur reminder dan sinkronisasi cloud menggunakan Flutter & Firebase.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Dart</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Demo</a>
-          </div>
+        <div class="p-5 pt-0 border-t border-gray-800 flex items-center justify-between mt-auto">
+          <button onclick="openProjectModal('proj-1')" class="text-xs bg-accent hover:bg-accent-hover text-dark-nav font-semibold px-3 py-1.5 rounded transition flex items-center gap-1.5">
+            <i class="fas fa-eye text-xs"></i> Detail & Demo
+          </button>
+          <a href="https://github.com/jemimaa10" target="_blank" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
       </div>
 
-      <!-- Project 3 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="uiux">
-        <div class="h-44 bg-gradient-to-br from-orange-900 to-red-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-paint-brush text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-orange-500 text-dark-nav font-semibold px-2 py-1 rounded">UI/UX</span>
+      <!-- Project 2: Mobile App -->
+      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group flex flex-col justify-between" data-category="mobile">
+        <div>
+          <div class="h-44 bg-gradient-to-br from-green-900 to-teal-900 flex items-center justify-center relative overflow-hidden cursor-pointer" onclick="openProjectModal('proj-2')">
+            <i class="fas fa-mobile-alt text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
+            <span class="absolute top-3 right-3 text-xs bg-green-500 text-dark-nav font-semibold px-2 py-1 rounded">Mobile App</span>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span class="text-xs bg-accent text-dark-nav font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+                <i class="fas fa-expand-alt text-xs"></i> Buka Pop-up
+              </span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-base mb-2 cursor-pointer hover:text-accent transition" onclick="openProjectModal('proj-2')">
+              Aplikasi To-Do List
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+              Manajemen tugas harian dengan fitur reminder dan sinkronisasi cloud menggunakan Flutter & Firebase.
+            </p>
+            <div class="flex gap-2 flex-wrap mb-5">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Dart</span>
+            </div>
+          </div>
         </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">E-Commerce App Design</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Desain antarmuka toko online modern dengan user flow lengkap dan prototype interaktif di Figma.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">User Flow</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-figma"></i> Figma</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Preview</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="web">
-        <div class="h-44 bg-gradient-to-br from-cyan-900 to-blue-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-shopping-cart text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-accent text-dark-nav font-semibold px-2 py-1 rounded">Web App</span>
-        </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">Platform Marketplace</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Sistem e-commerce sederhana dengan fitur keranjang belanja, autentikasi, dan manajemen produk.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Demo</a>
-          </div>
+        <div class="p-5 pt-0 border-t border-gray-800 flex items-center justify-between mt-auto">
+          <button onclick="openProjectModal('proj-2')" class="text-xs bg-accent hover:bg-accent-hover text-dark-nav font-semibold px-3 py-1.5 rounded transition flex items-center gap-1.5">
+            <i class="fas fa-eye text-xs"></i> Detail & Demo
+          </button>
+          <a href="https://github.com/jemimaa10" target="_blank" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
       </div>
 
-      <!-- Project 5 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="backend">
-        <div class="h-44 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-server text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-gray-500 text-white font-semibold px-2 py-1 rounded">Back End</span>
+      <!-- Project 3: UI/UX Design -->
+      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group flex flex-col justify-between" data-category="uiux">
+        <div>
+          <div class="h-44 bg-gradient-to-br from-orange-900 to-red-900 flex items-center justify-center relative overflow-hidden cursor-pointer" onclick="openProjectModal('proj-3')">
+            <i class="fas fa-paint-brush text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
+            <span class="absolute top-3 right-3 text-xs bg-orange-500 text-dark-nav font-semibold px-2 py-1 rounded">UI/UX</span>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span class="text-xs bg-accent text-dark-nav font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+                <i class="fas fa-expand-alt text-xs"></i> Buka Pop-up
+              </span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-base mb-2 cursor-pointer hover:text-accent transition" onclick="openProjectModal('proj-3')">
+              E-Commerce App Design
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+              Desain antarmuka toko online modern dengan user flow lengkap dan prototype interaktif di Figma.
+            </p>
+            <div class="flex gap-2 flex-wrap mb-5">
+              <span class="tag">Figma</span>
+              <span class="tag">Prototyping</span>
+              <span class="tag">User Flow</span>
+            </div>
+          </div>
         </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">REST API Blog</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">RESTful API untuk platform blog dengan fitur CRUD, autentikasi JWT, dan dokumentasi Swagger.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">Express.js</span><span class="tag">JWT</span><span class="tag">PostgreSQL</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Docs</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="project-card card-hover bg-dark-section rounded-xl overflow-hidden border border-gray-700 group" data-category="mobile">
-        <div class="h-44 bg-gradient-to-br from-pink-900 to-purple-900 flex items-center justify-center relative overflow-hidden">
-          <i class="fas fa-heartbeat text-6xl text-white opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-500"></i>
-          <span class="absolute top-3 right-3 text-xs bg-green-500 text-dark-nav font-semibold px-2 py-1 rounded">Mobile App</span>
-        </div>
-        <div class="p-5">
-          <h3 class="text-white font-bold text-base mb-2">Health Tracker App</h3>
-          <p class="text-gray-400 text-xs leading-relaxed mb-4">Aplikasi pencatatan aktivitas fisik dan pola makan harian dengan grafik progres yang interaktif.</p>
-          <div class="flex gap-2 flex-wrap mb-5">
-            <span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">SQLite</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="#" class="text-xs text-accent flex items-center gap-1 hover:gap-2 transition-all"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="text-xs text-gray-400 flex items-center gap-1 hover:text-white transition"><i class="fas fa-external-link-alt"></i> Demo</a>
-          </div>
+        <div class="p-5 pt-0 border-t border-gray-800 flex items-center justify-between mt-auto">
+          <button onclick="openProjectModal('proj-3')" class="text-xs bg-accent hover:bg-accent-hover text-dark-nav font-semibold px-3 py-1.5 rounded transition flex items-center gap-1.5">
+            <i class="fas fa-eye text-xs"></i> Detail & Demo
+          </button>
+          <a href="https://github.com/jemimaa10" target="_blank" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
       </div>
 
@@ -149,3 +142,225 @@
 
   </div>
 </section>
+
+<!-- ========================================================
+     POP-UP MODAL PROYEK (DETAIL, PLACEHOLDER APP & PLACEHOLDER SS)
+     ======================================================== -->
+<div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+  
+  <!-- Backdrop Click Listener -->
+  <div class="absolute inset-0" onclick="closeProjectModal()"></div>
+
+  <!-- Modal Container -->
+  <div class="relative bg-dark-card border border-gray-700 w-full max-w-3xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden z-10 animate-modal">
+    
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-dark-nav border-b border-gray-800 flex items-center justify-between flex-shrink-0">
+      <div class="flex items-center gap-3">
+        <span id="modal-category" class="text-xs bg-accent text-dark-nav font-bold px-2.5 py-1 rounded">Web App</span>
+        <h3 id="modal-title" class="text-lg md:text-xl font-bold text-white">Detail Proyek</h3>
+      </div>
+      <button onclick="closeProjectModal()" class="w-8 h-8 rounded-full bg-dark-section hover:bg-red-500/20 hover:text-red-400 text-gray-400 flex items-center justify-center transition">
+        <i class="fas fa-times text-sm"></i>
+      </button>
+    </div>
+
+    <!-- Modal Body (Scrollable) -->
+    <div class="p-6 overflow-y-auto space-y-6">
+
+      <!-- 1. PLACEHOLDER UNTUK SS (SCREENSHOT) APLIKASI -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs uppercase tracking-wider text-accent font-semibold flex items-center gap-1.5">
+            <i class="fas fa-camera"></i> Screenshot Aplikasi (SS)
+          </label>
+          <span class="text-[11px] text-gray-500">Format: 16:9 / Foto UI</span>
+        </div>
+
+        <div id="modal-ss-container" class="w-full h-56 md:h-72 rounded-xl bg-dark-bg border-2 border-dashed border-gray-600 flex flex-col items-center justify-center overflow-hidden relative group">
+          <!-- ===================================================================
+               GANTI TAG DI BAWAH DENGAN FILE SCREENSHOT KAMU:
+               Contoh: <img src="assets/ss-aplikasi-1.png" class="w-full h-full object-cover" />
+               =================================================================== -->
+          <div class="text-center p-6 flex flex-col items-center">
+            <div class="w-16 h-16 rounded-full bg-dark-section flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-image text-3xl text-accent"></i>
+            </div>
+            <p class="text-sm font-bold text-white">Placeholder Screenshot Aplikasi</p>
+            <p class="text-xs text-gray-400 mt-1 max-w-sm">
+              Tangkapan layar antarmuka aplikasi kamu. Kamu bisa menaruh file gambar di folder project dan pasang tag <code class="text-accent">&lt;img src="..."&gt;</code> di sini.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. PLACEHOLDER UNTUK APLIKASI YANG DIBUAT (LIVE PREVIEW / EMBED / DEMO) -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs uppercase tracking-wider text-accent font-semibold flex items-center gap-1.5">
+            <i class="fas fa-laptop-code"></i> Placeholder Aplikasi (Live App / Demo)
+          </label>
+          <span class="text-[11px] text-gray-500">Interactive Preview Area</span>
+        </div>
+
+        <div class="rounded-xl bg-dark-bg border border-gray-700 overflow-hidden">
+          <!-- Browser Tab Bar Mockup -->
+          <div class="px-4 py-2.5 bg-dark-nav border-b border-gray-800 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+              <span id="modal-app-url" class="ml-2 font-mono text-[11px] text-gray-400 bg-dark-section px-3 py-0.5 rounded border border-gray-700">
+                https://demo-app-placeholder.com
+              </span>
+            </div>
+            <span class="text-[11px] text-accent font-mono hidden sm:inline"><i class="fas fa-bolt text-xs"></i> App Ready</span>
+          </div>
+
+          <!-- Area Display App (Bisa diganti iframe atau interactive demo) -->
+          <div class="p-6 md:p-8 flex flex-col items-center justify-center text-center bg-gradient-to-b from-dark-bg to-dark-nav min-h-[180px]">
+            <div class="w-14 h-14 rounded-xl bg-dark-section flex items-center justify-center mb-3">
+              <i class="fas fa-cube text-2xl text-accent"></i>
+            </div>
+            <h4 class="text-sm md:text-base font-bold text-white mb-1">Area Tampilan Aplikasi</h4>
+            <p class="text-xs text-gray-400 max-w-md mb-5 leading-relaxed">
+              Kamu bisa menyematkan <code class="text-accent">&lt;iframe src="URL_APP"&gt;</code> di sini jika aplikasi sudah di-deploy, atau gunakan tombol di bawah untuk membuka aplikasi secara langsung.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <a id="modal-demo-btn" href="#" target="_blank" class="btn-primary text-xs !py-2.5 !px-5">
+                <i class="fas fa-external-link-alt text-xs"></i> Buka Aplikasi (Demo)
+              </a>
+              <a id="modal-github-btn" href="https://github.com/jemimaa10" target="_blank" class="inline-flex items-center gap-2 bg-dark-section hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2.5 px-5 rounded-lg border border-gray-600 transition">
+                <i class="fab fa-github text-sm"></i> GitHub Repository
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. DESKRIPSI & FITUR PROYEK -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 border-t border-gray-800">
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Tentang Proyek</h4>
+          <p id="modal-desc" class="text-sm text-gray-300 leading-relaxed">
+            Deskripsi lengkap proyek akan tampil di sini.
+          </p>
+          <div class="pt-2">
+            <h5 class="text-xs font-semibold text-white mb-2">Fitur Utama:</h5>
+            <ul id="modal-features" class="space-y-1.5 text-xs text-gray-400">
+              <!-- diisi JS -->
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-3">Tech Stack</h4>
+          <div id="modal-tags" class="flex flex-wrap gap-1.5">
+            <!-- diisi JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="px-6 py-3 bg-dark-nav border-t border-gray-800 flex items-center justify-end flex-shrink-0">
+      <button onclick="closeProjectModal()" class="px-5 py-2 rounded-lg bg-dark-section hover:bg-gray-700 text-gray-300 text-xs font-semibold transition">
+        Tutup
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Data Proyek untuk Pop-Up
+  const projectDetails = {
+    'proj-1': {
+      title: 'Sistem Informasi Kampus',
+      category: 'Web App',
+      categoryColor: 'bg-accent text-dark-nav',
+      appUrl: 'https://demo-kampus.vercel.app',
+      desc: 'Aplikasi web full-stack untuk mempermudah pengelolaan data civitas akademika, administrasi mahasiswa, jadwal mata kuliah, serta sistem input dan rekapitulasi nilai oleh dosen.',
+      features: [
+        'Autentikasi multi-role (Admin, Dosen, Mahasiswa)',
+        'Manajemen Kartu Rencana Studi (KRS) online',
+        'Rekapitulasi Indeks Prestasi (IPK) otomatis',
+        'Ekspor laporan data ke PDF & Excel'
+      ],
+      tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'PHP', 'Blade']
+    },
+    'proj-2': {
+      title: 'Aplikasi To-Do List',
+      category: 'Mobile App',
+      categoryColor: 'bg-green-500 text-dark-nav',
+      appUrl: 'https://github.com/jemimaa10/todolist-app',
+      desc: 'Aplikasi mobile cross-platform berbasis Flutter untuk membantu produktivitas harian dengan sistem reminder pintar, kategori prioritas tugas, dan sinkronisasi cloud real-time.',
+      features: [
+        'Sinkronisasi real-time berbasis Firebase Firestore',
+        'Notifikasi reminder lokal terjadwal',
+        'Filter tugas berdasarkan prioritas (High, Med, Low)',
+        'Dark mode & tampilan responsif'
+      ],
+      tags: ['Flutter', 'Firebase', 'Dart', 'Provider', 'Mobile']
+    },
+    'proj-3': {
+      title: 'E-Commerce App Design',
+      category: 'UI/UX',
+      categoryColor: 'bg-orange-500 text-dark-nav',
+      appUrl: 'https://figma.com/@jemimaa10',
+      desc: 'Rancangan desain antarmuka toko online modern dengan user flow yang komprehensif, desain sistem komponen yang konsisten, serta prototipe interaktif siap uji coba di Figma.',
+      features: [
+        'Riset pengguna & Persona pemetaan masalah',
+        'Wireframing low-fidelity & High-fidelity mockup',
+        'Interactive prototype dengan micro-interaction',
+        'Design system lengkap (Typography, Colors, Components)'
+      ],
+      tags: ['Figma', 'UI/UX', 'Prototyping', 'User Flow', 'Wireframing']
+    }
+  };
+
+  function openProjectModal(id) {
+    const data = projectDetails[id];
+    if (!data) return;
+
+    document.getElementById('modal-title').textContent = data.title;
+    const catEl = document.getElementById('modal-category');
+    catEl.textContent = data.category;
+    catEl.className = `text-xs font-bold px-2.5 py-1 rounded ${data.categoryColor}`;
+    document.getElementById('modal-app-url').textContent = data.appUrl;
+    document.getElementById('modal-desc').textContent = data.desc;
+    document.getElementById('modal-demo-btn').href = data.appUrl;
+
+    // Features
+    const featContainer = document.getElementById('modal-features');
+    featContainer.innerHTML = data.features.map(f => 
+      `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-accent text-xs mt-0.5"></i><span>${f}</span></li>`
+    ).join('');
+
+    // Tags
+    const tagsContainer = document.getElementById('modal-tags');
+    tagsContainer.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProjectModal() {
+    const modal = document.getElementById('project-modal');
+    if (!modal) return;
+    modal.classList.add('opacity-0');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  // Close modal via ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeProjectModal();
+  });
+</script>

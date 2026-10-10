@@ -86,4 +86,108 @@ function initPage() {
   });
 }
 
+// ==========================================
+// DATA & FUNGSI POP-UP MODAL PROYEK
+// ==========================================
+const projectDetails = {
+  'proj-1': {
+    title: 'Sistem Informasi Kampus',
+    category: 'Web App',
+    categoryColor: 'bg-accent text-dark-nav',
+    appUrl: 'https://demo-kampus.vercel.app',
+    desc: 'Aplikasi web full-stack untuk mempermudah pengelolaan data civitas akademika, administrasi mahasiswa, jadwal mata kuliah, serta sistem input dan rekapitulasi nilai oleh dosen.',
+    features: [
+      'Autentikasi multi-role (Admin, Dosen, Mahasiswa)',
+      'Manajemen Kartu Rencana Studi (KRS) online',
+      'Rekapitulasi Indeks Prestasi (IPK) otomatis',
+      'Ekspor laporan data ke PDF & Excel'
+    ],
+    tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'PHP', 'Blade']
+  },
+  'proj-2': {
+    title: 'Aplikasi To-Do List',
+    category: 'Mobile App',
+    categoryColor: 'bg-green-500 text-dark-nav',
+    appUrl: 'https://github.com/jemimaa10/todolist-app',
+    desc: 'Aplikasi mobile cross-platform berbasis Flutter untuk membantu produktivitas harian dengan sistem reminder pintar, kategori prioritas tugas, dan sinkronisasi cloud real-time.',
+    features: [
+      'Sinkronisasi real-time berbasis Firebase Firestore',
+      'Notifikasi reminder lokal terjadwal',
+      'Filter tugas berdasarkan prioritas (High, Med, Low)',
+      'Dark mode & tampilan responsif'
+    ],
+    tags: ['Flutter', 'Firebase', 'Dart', 'Provider', 'Mobile']
+  },
+  'proj-3': {
+    title: 'E-Commerce App Design',
+    category: 'UI/UX',
+    categoryColor: 'bg-orange-500 text-dark-nav',
+    appUrl: 'https://figma.com/@jemimaa10',
+    desc: 'Rancangan desain antarmuka toko online modern dengan user flow yang komprehensif, desain sistem komponen yang konsisten, serta prototipe interaktif siap uji coba di Figma.',
+    features: [
+      'Riset pengguna & Persona pemetaan masalah',
+      'Wireframing low-fidelity & High-fidelity mockup',
+      'Interactive prototype dengan micro-interaction',
+      'Design system lengkap (Typography, Colors, Components)'
+    ],
+    tags: ['Figma', 'UI/UX', 'Prototyping', 'User Flow', 'Wireframing']
+  }
+};
+
+window.openProjectModal = function(id) {
+  const data = projectDetails[id];
+  if (!data) return;
+
+  const titleEl = document.getElementById('modal-title');
+  if (titleEl) titleEl.textContent = data.title;
+
+  const catEl = document.getElementById('modal-category');
+  if (catEl) {
+    catEl.textContent = data.category;
+    catEl.className = `text-xs font-bold px-2.5 py-1 rounded ${data.categoryColor}`;
+  }
+
+  const urlEl = document.getElementById('modal-app-url');
+  if (urlEl) urlEl.textContent = data.appUrl;
+
+  const descEl = document.getElementById('modal-desc');
+  if (descEl) descEl.textContent = data.desc;
+
+  const demoBtn = document.getElementById('modal-demo-btn');
+  if (demoBtn) demoBtn.href = data.appUrl;
+
+  const featContainer = document.getElementById('modal-features');
+  if (featContainer) {
+    featContainer.innerHTML = data.features.map(f => 
+      `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-accent text-xs mt-0.5"></i><span>${f}</span></li>`
+    ).join('');
+  }
+
+  const tagsContainer = document.getElementById('modal-tags');
+  if (tagsContainer) {
+    tagsContainer.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  }
+
+  const modal = document.getElementById('project-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeProjectModal = function() {
+  const modal = document.getElementById('project-modal');
+  if (!modal) return;
+  modal.classList.add('opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }, 300);
+};
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') window.closeProjectModal();
+});
+
 loadSections();
