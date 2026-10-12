@@ -1,8 +1,4 @@
-/* =============================================
-   LOADER - Load semua section ke index.html
-   Edit bagian sections/ untuk tiap section-nya
-   ============================================= */
-
+// laod semua ke index html jadi bisa langsung go live 
 const sections = [
   { id: 'section-home',      file: 'sections/home.html' },
   { id: 'section-portfolio', file: 'sections/portfolio.html' },
@@ -86,9 +82,6 @@ function initPage() {
   });
 }
 
-// ==========================================
-// DATA & FUNGSI POP-UP MODAL PROYEK
-// ==========================================
 const projectDetails = {
   'proj-1': {
     title: 'Sistem Informasi Kampus',
