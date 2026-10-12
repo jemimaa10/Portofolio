@@ -1,11 +1,6 @@
-<!-- ================================================
-     SECTION: SERVICES
-     Edit file ini untuk mengubah layanan & skills
-     ================================================ -->
 <section id="services" class="py-20 bg-dark-section">
   <div class="max-w-6xl mx-auto px-6">
 
-    <!-- Header -->
     <div class="text-center mb-14">
       <p class="text-accent text-xs uppercase tracking-widest mb-2">What I Offer</p>
       <h2 class="text-3xl md:text-4xl font-black text-white">Services</h2>
@@ -13,10 +8,8 @@
       <p class="text-gray-400 text-sm mt-4 max-w-md mx-auto">Layanan yang saya tawarkan berdasarkan pengalaman belajar dan proyek nyata selama perkuliahan.</p>
     </div>
 
-    <!-- What Can I Do -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
 
-      <!-- Kiri: Teks + Stats -->
       <div>
         <h3 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
           What Can I Do For<br/>Your Needs
@@ -27,7 +20,6 @@
         </p>
       </div>
 
-      <!-- Kanan: Service Items -->
       <div class="flex flex-col gap-3">
         <div class="service-item bg-dark-bg rounded-xl p-4 flex items-center gap-4 border border-gray-700">
           <div class="w-16 h-16 rounded-lg bg-dark-section flex items-center justify-center flex-shrink-0">
@@ -72,7 +64,6 @@
       </div>
     </div>
 
-    <!-- Service Cards Detail -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
       <div class="card-hover bg-dark-bg rounded-xl p-7 border border-gray-700">
         <div class="w-14 h-14 rounded-xl bg-dark-section flex items-center justify-center mb-5">
@@ -115,13 +106,13 @@
       </div>
     </div>
 
-    <!-- Skills Grid -->
     <div class="text-center mb-8">
       <p class="text-accent text-xs uppercase tracking-widest mb-2">Tech Stack</p>
       <h3 class="text-2xl font-black text-white">Skills & Teknologi</h3>
       <div class="section-divider center"></div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
       <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
         <i class="fab fa-html5 text-4xl text-orange-400 mb-3"></i>
         <p class="text-white text-sm font-semibold">HTML5</p>
@@ -138,8 +129,28 @@
         <p class="text-gray-500 text-xs mt-1">Intermediate</p>
       </div>
       <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-file-code text-4xl text-blue-500 mb-3"></i>
+        <p class="text-white text-sm font-semibold">TypeScript</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
         <i class="fab fa-react text-4xl text-cyan-400 mb-3"></i>
         <p class="text-white text-sm font-semibold">React</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-layer-group text-4xl text-gray-200 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Next.js</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-wind text-4xl text-teal-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Tailwind CSS</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-server text-4xl text-gray-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Express.js</p>
         <p class="text-gray-500 text-xs mt-1">Intermediate</p>
       </div>
       <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
@@ -148,20 +159,119 @@
         <p class="text-gray-500 text-xs mt-1">Intermediate</p>
       </div>
       <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-mobile-alt text-4xl text-sky-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Flutter</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
         <i class="fab fa-php text-4xl text-indigo-400 mb-3"></i>
         <p class="text-white text-sm font-semibold">PHP</p>
         <p class="text-gray-500 text-xs mt-1">Intermediate</p>
       </div>
-      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-bullseye text-4xl text-sky-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Dart</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-database text-4xl text-gray-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">SQL</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
         <i class="fab fa-python text-4xl text-yellow-300 mb-3"></i>
         <p class="text-white text-sm font-semibold">Python</p>
         <p class="text-gray-500 text-xs mt-1">Beginner</p>
       </div>
-      <div class="bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-cubes text-4xl text-rose-500 mb-3"></i>
+        <p class="text-white text-sm font-semibold">NestJS</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-database text-4xl text-blue-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">PostgreSQL</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-database text-4xl text-sky-500 mb-3"></i>
+        <p class="text-white text-sm font-semibold">MySQL</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-gem text-4xl text-emerald-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Prisma</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-project-diagram text-4xl text-orange-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">TypeORM</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-plug text-4xl text-green-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">REST API</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-exchange-alt text-4xl text-gray-200 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Socket.IO</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-key text-4xl text-pink-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">JWT Auth</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-fire text-4xl text-amber-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Firebase</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
         <i class="fab fa-git-alt text-4xl text-orange-500 mb-3"></i>
         <p class="text-white text-sm font-semibold">Git</p>
         <p class="text-gray-500 text-xs mt-1">Intermediate</p>
       </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fab fa-github text-4xl text-gray-200 mb-3"></i>
+        <p class="text-white text-sm font-semibold">GitHub</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fab fa-docker text-4xl text-blue-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Docker</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-file-alt text-4xl text-green-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Swagger</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-vial text-4xl text-red-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Jest</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fab fa-figma text-4xl text-purple-400 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Figma</p>
+        <p class="text-gray-500 text-xs mt-1">Intermediate</p>
+      </div>
+      <div class="skill-extra hidden bg-dark-bg rounded-xl p-5 text-center border border-gray-700 card-hover">
+        <i class="fas fa-robot text-4xl text-indigo-300 mb-3"></i>
+        <p class="text-white text-sm font-semibold">Gemini API</p>
+        <p class="text-gray-500 text-xs mt-1">Beginner</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-8">
+      <button type="button" aria-expanded="false" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gray-700 text-accent text-sm font-semibold hover:bg-dark-bg transition-all"
+        onclick="var g=document.getElementById('skills-grid');var open=this.getAttribute('aria-expanded')==='true';g.querySelectorAll('.skill-extra').forEach(function(c){c.classList.toggle('hidden',open);});this.setAttribute('aria-expanded',open?'false':'true');this.querySelector('.skills-label').textContent=open?'Show All ('+g.children.length+')':'Show Less';this.querySelector('i').style.transform=open?'rotate(0deg)':'rotate(180deg)';if(open){g.scrollIntoView({behavior:'smooth',block:'center'});}">
+        <span class="skills-label">Show All (30)</span>
+        <i class="fas fa-chevron-down text-xs" style="transition: transform 0.3s;"></i>
+      </button>
     </div>
 
   </div>
