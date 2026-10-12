@@ -11,4 +11,4 @@ Computer Science (Software Engineering) - Semester 5
 🔗 [LinkedIn](https://www.linkedin.com/in/jeremy-felix-5b7447326/)
 
 ---
-*Dibuat dengan ❤️ untuk enrichment magang 2025*
+*Dibuat dengan ❤️ untuk enrichment magang 2027*
