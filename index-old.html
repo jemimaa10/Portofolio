@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeremy Felix | Portfolio</title>
+  <script>
+    // Pasang tema tersimpan sebelum halaman tampil, supaya tidak kedip dari dark ke light
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light'); } catch (e) {}
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-bg':      '#1a1a2e',
+            'dark-card':    '#16213e',
+            'dark-nav':     '#0f0f1a',
+            'dark-section': '#1e1e30',
+            'accent':       '#f5a623',
+            'accent-hover': '#e09515',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark-bg text-white">
+
+  <nav class="bg-dark-nav fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-2">
+        <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 pixel-card flex items-center justify-center">JF</span>
+        <span class="text-white font-bold text-lg">Jeremy</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#home"      class="nav-link text-gray-300 hover:text-white">Home</a>
+        <a href="#portfolio" class="nav-link text-gray-300 hover:text-white">Portfolio</a>
+        <a href="#services"  class="nav-link text-gray-300 hover:text-white">Services</a>
+        <a href="#about"     class="nav-link text-gray-300 hover:text-white">About</a>
+        <a href="#contact"   class="nav-link text-gray-300 hover:text-white">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-gray-400">
+        <a href="https://github.com/jemimaa10" target="_blank" class="hover:text-accent transition"><i class="fab fa-github text-lg"></i></a>
+        <a href="#" class="hover:text-accent transition"><i class="fab fa-linkedin text-lg"></i></a>
+        <button type="button" class="theme-toggle hover:text-accent transition" aria-label="Ganti ke light mode" title="Light / dark mode">
+          <i class="fas fa-sun text-lg"></i>
+        </button>
+      </div>
+      <div class="md:hidden flex items-center gap-5">
+        <button type="button" class="theme-toggle text-gray-300 hover:text-accent" aria-label="Ganti ke light mode" title="Light / dark mode">
+          <i class="fas fa-sun text-xl"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-gray-300 hover:text-accent">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-dark-nav border-t border-gray-800 px-6 py-4">
+      <div class="flex flex-col gap-4 text-sm">
+        <a href="#home"      class="text-gray-300 hover:text-accent transition">Home</a>
+        <a href="#portfolio" class="text-gray-300 hover:text-accent transition">Portfolio</a>
+        <a href="#services"  class="text-gray-300 hover:text-accent transition">Services</a>
+        <a href="#about"     class="text-gray-300 hover:text-accent transition">About</a>
+        <a href="#contact"   class="text-gray-300 hover:text-accent transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+   
+  <div id="section-home"></div>
+  <div id="section-portfolio"></div>
+  <div id="section-services"></div>
+  <div id="section-about"></div>
+  <div id="section-contact"></div>
+
+  <!-- footer -->
+  <footer class="bg-dark-nav py-8 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 pixel-card flex items-center justify-center">JF</span>
+        <span class="text-white font-bold">Jeremy Felix</span>
+      </div>
+      <p class="text-gray-600 text-xs">&copy; 2026 Jeremy Felix.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-instagram text-sm"></i></a>
+        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-twitter text-sm"></i></a>
+        <a href="https://github.com/jemimaa10" target="_blank" class="text-gray-600 hover:text-accent transition"><i class="fab fa-github text-sm"></i></a>
+        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- back to top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    class="fixed bottom-6 right-6 w-10 h-10 bg-accent hover:bg-accent-hover text-dark-nav pixel-card flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+    <i class="fas fa-chevron-up text-sm"></i>
+  </button>
+
+  <script src="js/main.js"></script>
+  <script src="js/portfolio.js?v=5"></script>
+  <script src="js/theme.js?v=1"></script>
+  <script src="js/loader.js?v=6"></script>
+</body>
+</html>
+

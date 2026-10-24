@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen&display=swap');
 
 /* ---------- Base ---------- */
 html { scroll-behavior: smooth; }
@@ -130,4 +130,304 @@ input:focus, textarea:focus {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+/* =====================================================
+   PIXEL / HUD THEME (terinspirasi CS2)
+   Font pixel cuma untuk judul, label, tombol, nav.
+   Paragraf tetap Inter supaya enak dibaca.
+   ===================================================== */
+:root {
+  --accent: #f5a623;
+  --accent-dark: #a86b0c;
+  --px: 3px; /* ukuran "pixel" untuk border & sudut */
+}
+
+h1, h2, h3, .font-pixel {
+  font-family: 'Pixelify Sans', 'Inter', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.hud-label, .nav-link, .btn-primary, .tag, .hud-level, .hud-chip, .hud-frame-label {
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 0.08em;
+}
+
+/* Label kecil di atas judul: "// PORTFOLIO" */
+.hud-label::before {
+  content: '// ';
+  opacity: 0.55;
+}
+
+/* ---------- Background grid halus + scanline CRT ---------- */
+section {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 0 1px, transparent 1px 3px);
+}
+
+/* ---------- Kotak dengan sudut pixel ----------
+   Punya class "border": border digambar pakai box-shadow, sudutnya bolong (khas pixel art).
+   Tanpa border: sudutnya dipotong berundak pakai clip-path. */
+.pixel-card {
+  border-radius: 0 !important;
+}
+.pixel-card.border {
+  --pb: #374151;
+  --drop: 0 0 0 transparent;
+  border-width: 0 !important;
+  box-shadow:
+    0 calc(var(--px) * -1) 0 var(--pb),
+    0 var(--px) 0 var(--pb),
+    calc(var(--px) * -1) 0 0 var(--pb),
+    var(--px) 0 0 var(--pb),
+    var(--drop);
+  transition: transform 0.15s steps(3), box-shadow 0.15s;
+}
+.pixel-card.border-gray-600 { --pb: #4b5563; }
+.pixel-card.border-gray-800 { --pb: #1f2937; }
+.pixel-card.border-accent,
+.pixel-card[class*="hover:border-accent"]:hover { --pb: var(--accent); }
+.pixel-card.border-l-accent {
+  box-shadow:
+    0 calc(var(--px) * -1) 0 var(--pb),
+    0 var(--px) 0 var(--pb),
+    calc(var(--px) * -1) 0 0 var(--accent),
+    var(--px) 0 0 var(--pb),
+    var(--drop);
+}
+.pixel-card:not(.border) {
+  clip-path: polygon(
+    0 var(--px), var(--px) var(--px), var(--px) 0,
+    calc(100% - var(--px)) 0, calc(100% - var(--px)) var(--px), 100% var(--px),
+    100% calc(100% - var(--px)), calc(100% - var(--px)) calc(100% - var(--px)), calc(100% - var(--px)) 100%,
+    var(--px) 100%, var(--px) calc(100% - var(--px)), 0 calc(100% - var(--px))
+  );
+}
+
+/* Hover kartu: naik sedikit + bayangan keras, bukan blur */
+.card-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: none;
+}
+.pixel-card.card-hover:hover {
+  --pb: var(--accent);
+  --drop: 6px 6px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- Tombol utama: tombol game yang bisa "ditekan" ---------- */
+.btn-primary {
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  box-shadow:
+    0 calc(var(--px) * -1) 0 var(--accent),
+    calc(var(--px) * -1) 0 0 var(--accent),
+    var(--px) 0 0 var(--accent),
+    0 6px 0 var(--accent-dark);
+  transition: transform 0.08s, box-shadow 0.08s, background-color 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 var(--accent-hover, #e09515),
+    calc(var(--px) * -1) 0 0 var(--accent-hover, #e09515),
+    var(--px) 0 0 var(--accent-hover, #e09515),
+    0 7px 0 var(--accent-dark);
+}
+.btn-primary:active {
+  transform: translateY(5px);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 var(--accent),
+    calc(var(--px) * -1) 0 0 var(--accent),
+    var(--px) 0 0 var(--accent),
+    0 1px 0 var(--accent-dark);
+}
+
+/* ---------- Nav ---------- */
+.nav-link {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+.nav-link::after {
+  height: 3px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 9px);
+  transition: width 0.3s steps(6);
+}
+
+/* ---------- Garis pembatas jadi blok pixel ---------- */
+.section-divider,
+.underline-accent::after {
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 8px, transparent 8px 12px);
+}
+.underline-accent::after { width: 92px; }
+
+/* ---------- Chip status "Open for Internship" ---------- */
+.hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 6px 12px;
+  box-shadow: 0 -2px 0 #166534, 0 2px 0 #166534, -2px 0 0 #166534, 2px 0 0 #166534;
+}
+.blink-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink { to { visibility: hidden; } }
+
+/* ---------- Bingkai foto ala crosshair/scope HUD ---------- */
+.hud-frame {
+  --c: var(--accent);
+  position: relative;
+  padding: 16px;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 24px 3px,
+    linear-gradient(var(--c), var(--c)) top left / 3px 24px,
+    linear-gradient(var(--c), var(--c)) top right / 24px 3px,
+    linear-gradient(var(--c), var(--c)) top right / 3px 24px,
+    linear-gradient(var(--c), var(--c)) bottom left / 24px 3px,
+    linear-gradient(var(--c), var(--c)) bottom left / 3px 24px,
+    linear-gradient(var(--c), var(--c)) bottom right / 24px 3px,
+    linear-gradient(var(--c), var(--c)) bottom right / 3px 24px;
+  background-repeat: no-repeat;
+}
+.hud-frame-label {
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.6rem;
+  color: var(--accent);
+  background: #0f0f1a;
+  padding: 2px 8px;
+}
+
+/* ---------- Bar level skill ala HP/armor ---------- */
+.hud-level {
+  font-size: 0.6rem !important;
+  text-transform: uppercase;
+}
+.hp-bar {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 8px;
+}
+.hp-bar span {
+  width: 12px;
+  height: 6px;
+  background: #2a2f3a;
+}
+.hp-bar span.on { background: var(--accent); }
+
+/* ---------- Kartu project: kursor crosshair CS ---------- */
+.project-card {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg fill='%2300ff66' stroke='%23000' stroke-width='1'%3E%3Crect x='14.5' y='3.5' width='3' height='8'/%3E%3Crect x='14.5' y='20.5' width='3' height='8'/%3E%3Crect x='3.5' y='14.5' width='8' height='3'/%3E%3Crect x='20.5' y='14.5' width='8' height='3'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+/* ---------- Detail kecil lain ---------- */
+.tag { border-radius: 0; }
+::-webkit-scrollbar-thumb { border-radius: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blink-dot { animation: none; }
+}
+
+/* Tombol sekunder ikut font pixel, biar seragam dengan tombol utama */
+a.pixel-card.border.px-6,
+button.pixel-card.border:not(.project-card),
+#contact-form button[type="submit"] {
+  font-family: 'Silkscreen', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   LIGHT MODE (class "light" di <html>, diatur js/theme.js)
+   Warna Tailwind gelap ditimpa di sini. Teks di atas tombol
+   oranye (text-dark-nav) sengaja tetap gelap.
+   ===================================================== */
+html.light {
+  --accent-text: #a85d00; /* oranye lebih gelap, biar terbaca di background terang */
+  color-scheme: light;
+}
+
+html.light .bg-dark-bg { background-color: #eef0f3; }
+html.light .bg-dark-section { background-color: #e3e6eb; }
+html.light .bg-dark-nav { background-color: #ffffff; }
+html.light .bg-dark-card,
+html.light .bg-gray-900 { background-color: #ffffff; }
+html.light .bg-gray-800 { background-color: #e5e7eb; }
+html.light .bg-gray-900\/85 { background-color: rgba(255, 255, 255, 0.9); }
+html.light .bg-black\/30 { background-color: rgba(15, 15, 26, 0.15); }
+html.light .hover\:bg-gray-700:hover,
+html.light .hover\:bg-dark-bg:hover { background-color: #d1d5db; }
+
+html.light .text-white { color: #111827; }
+html.light .text-gray-200 { color: #1f2937; }
+html.light .text-gray-300 { color: #374151; }
+html.light .text-gray-400 { color: #4b5563; }
+html.light .text-gray-500,
+html.light .text-gray-600 { color: #6b7280; }
+html.light .hover\:text-white:hover { color: #000000; }
+html.light .text-accent,
+html.light .hover\:text-accent:hover { color: var(--accent-text); }
+/* Ikon yang berubah gelap saat kartu kontak di-hover tetap gelap */
+html.light .group:hover .group-hover\:text-dark-nav { color: #0f0f1a; }
+
+html.light .border-gray-700,
+html.light .border-gray-600,
+html.light .border-gray-800 { border-color: #d1d5db; }
+
+html.light .pixel-card.border { --pb: #c3c9d2; }
+html.light .pixel-card.border-gray-600 { --pb: #b3bac5; }
+html.light .pixel-card.border-gray-800 { --pb: #d5d9df; }
+html.light .pixel-card.border-accent,
+html.light .pixel-card[class*="hover:border-accent"]:hover,
+html.light .pixel-card.card-hover:hover { --pb: var(--accent); }
+html.light .pixel-card.card-hover:hover { --drop: 6px 6px 0 rgba(15, 15, 26, 0.18); }
+
+html.light section {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+html.light body::after {
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px 3px);
+}
+
+html.light .hud-chip {
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.12);
+}
+html.light .hud-frame-label { background: #ffffff; color: var(--accent-text); }
+html.light .hp-bar span { background: #d1d5db; }
+html.light .hp-bar span.on { background: var(--accent); }
+html.light ::-webkit-scrollbar-track { background: #eef0f3; }
+
+/* Tombol ganti tema */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,95 +1,338 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jeremy Felix | Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Jeremy Felix | Software Engineer</title>
+  <meta name="description" content="Jeremy Felix - Computer Science student focused on software engineering, full-stack web, and mobile development." />
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'dark-bg':      '#1a1a2e',
-            'dark-card':    '#16213e',
-            'dark-nav':     '#0f0f1a',
-            'dark-section': '#1e1e30',
-            'accent':       '#f5a623',
-            'accent-hover': '#e09515',
-          }
-        }
+    // Pasang tema tersimpan sebelum halaman tampil, supaya tidak kedip dari dark ke light
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light'); } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=2" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
       }
     }
   </script>
 </head>
-<body class="bg-dark-bg text-white">
+<body>
 
-  <nav class="bg-dark-nav fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-2">
-        <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
-        <span class="text-white font-bold text-lg">Jeremy</span>
-      </a>
-      <div class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#home"      class="nav-link text-gray-300 hover:text-white">Home</a>
-        <a href="#portfolio" class="nav-link text-gray-300 hover:text-white">Portfolio</a>
-        <a href="#services"  class="nav-link text-gray-300 hover:text-white">Services</a>
-        <a href="#about"     class="nav-link text-gray-300 hover:text-white">About</a>
-        <a href="#contact"   class="nav-link text-gray-300 hover:text-white">Contact</a>
-      </div>
-      <div class="hidden md:flex items-center gap-4 text-gray-400">
-        <a href="https://github.com/jemimaa10" target="_blank" class="hover:text-accent transition"><i class="fab fa-github text-lg"></i></a>
-        <a href="#" class="hover:text-accent transition"><i class="fab fa-linkedin text-lg"></i></a>
-      </div>
-      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-accent">
-        <i class="fas fa-bars text-xl"></i>
+  <!-- loading screen, hilang otomatis setelah model 3D selesai dimuat -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-box">
+      <span class="loader-name">JEREMY FELIX</span>
+      <div class="loader-bar"><i id="loader-fill"></i></div>
+      <span id="loader-pct" class="loader-pct">0%</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a href="#landing" class="nav-logo" aria-label="Back to top">JF</a>
+    <a href="mailto:jeremy.felix@binus.ac.id" class="nav-email">jeremy.felix@binus.ac.id</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <button type="button" class="theme-toggle" aria-label="Ganti ke light mode" title="Light / dark mode">
+        <i class="fas fa-sun"></i>
       </button>
-    </div>
-    <div id="mobile-menu" class="md:hidden bg-dark-nav border-t border-gray-800 px-6 py-4">
-      <div class="flex flex-col gap-4 text-sm">
-        <a href="#home"      class="text-gray-300 hover:text-accent transition">Home</a>
-        <a href="#portfolio" class="text-gray-300 hover:text-accent transition">Portfolio</a>
-        <a href="#services"  class="text-gray-300 hover:text-accent transition">Services</a>
-        <a href="#about"     class="text-gray-300 hover:text-accent transition">About</a>
-        <a href="#contact"   class="text-gray-300 hover:text-accent transition">Contact</a>
+    </nav>
+  </header>
+
+  <div class="social-rail">
+    <a href="https://github.com/jemimaa10" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/jeremy-felix-5b7447326/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/jeremyfelixx" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+
+  <a href="assets/Jeremy_Felix_Resume.pdf" download="Jeremy_Felix_Resume.pdf" class="resume-btn">
+    Resume <i class="fas fa-file-arrow-down"></i>
+  </a>
+
+  <!-- karakter 3D: kepala ikut arah cursor (js/character.js) -->
+  <div id="character" class="character" aria-hidden="true">
+    <canvas id="character-canvas"></canvas>
+    <p id="character-error" class="character-error" hidden></p>
+  </div>
+
+  <main>
+
+    <!-- ===== LANDING ===== -->
+    <section id="landing" class="landing">
+      <div class="landing-intro">
+        <h2>Hello! I'm</h2>
+        <h1>JEREMY<br /><span>FELIX</span></h1>
       </div>
-    </div>
-  </nav>
-
-   
-  <div id="section-home"></div>
-  <div id="section-portfolio"></div>
-  <div id="section-services"></div>
-  <div id="section-about"></div>
-  <div id="section-contact"></div>
-
-  //footer
-  <footer class="bg-dark-nav py-8 border-t border-gray-800">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="bg-accent text-dark-nav font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">JF</span>
-        <span class="text-white font-bold">Jeremy Felix</span>
+      <div class="landing-info">
+        <h3>A</h3>
+        <h2 class="landing-role">
+          <span class="role-line" id="role-1">Software</span>
+          <span class="role-line role-accent" id="role-2">Engineer</span>
+        </h2>
       </div>
-      <p class="text-gray-600 text-xs">&copy; 2026 Jeremy Felix.</p>
-      <div class="flex gap-4">
-        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-instagram text-sm"></i></a>
-        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-twitter text-sm"></i></a>
-        <a href="https://github.com/jemimaa10" target="_blank" class="text-gray-600 hover:text-accent transition"><i class="fab fa-github text-sm"></i></a>
-        <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+      <a href="#about" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="about">
+      <div class="about-me" data-reveal>
+        <h3 class="title">About Me</h3>
+        <p class="para">
+          I'm a Computer Science student focused on software engineering, full-stack web, mobile development,
+          and web development. Experienced building applications with React, Next.js, NestJS, Express.js, and
+          Flutter, including REST APIs, real-time features, and AI integration. Seeking a software engineering
+          internship.
+        </p>
       </div>
+    </section>
+
+    <!-- ===== WHAT I DO ===== -->
+    <section id="whatido" class="whatido section-container">
+      <h2 class="what-title" data-reveal>W<span class="hat">HAT</span><br />I<span class="do"> DO</span></h2>
+
+      <div class="what-list">
+        <article class="what-box" tabindex="0" data-reveal>
+          <span class="what-num">01</span>
+          <h3>Software Engineering</h3>
+          <h4>Clean, maintainable systems</h4>
+          <p>Designing and building reliable applications with clear architecture, typed code, automated tests, and version control from day one.</p>
+          <div class="what-tags">
+            <span>TypeScript</span><span>NestJS</span><span>Jest</span><span>Git</span><span>Docker</span><span>Swagger</span>
+          </div>
+        </article>
+        <article class="what-box" tabindex="0" data-reveal>
+          <span class="what-num">02</span>
+          <h3>Full-Stack Web</h3>
+          <h4>End-to-end web applications</h4>
+          <p>REST APIs, authentication, databases, real-time features, and AI integration, wired into a responsive front-end.</p>
+          <div class="what-tags">
+            <span>Next.js</span><span>Express.js</span><span>PostgreSQL</span><span>Prisma</span><span>Socket.IO</span><span>JWT</span><span>Gemini API</span>
+          </div>
+        </article>
+        <article class="what-box" tabindex="0" data-reveal>
+          <span class="what-num">03</span>
+          <h3>Mobile Development</h3>
+          <h4>Cross-platform apps</h4>
+          <p>Android and iOS apps from a single Flutter codebase, connected to Firebase and REST back-ends.</p>
+          <div class="what-tags">
+            <span>Flutter</span><span>Dart</span><span>Firebase</span><span>REST API</span>
+          </div>
+        </article>
+        <article class="what-box" tabindex="0" data-reveal>
+          <span class="what-num">04</span>
+          <h3>Web Development</h3>
+          <h4>Fast, responsive interfaces</h4>
+          <p>Modern, accessible websites and dashboards, from Figma design to production-ready front-end and server code.</p>
+          <div class="what-tags">
+            <span>React</span><span>Tailwind CSS</span><span>JavaScript</span><span>Laravel</span><span>PHP</span><span>Figma</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CAREER & EXPERIENCE ===== -->
+    <section id="career" class="career section-container">
+      <h2 data-reveal>My career <span>&amp;</span><br />experience</h2>
+      <div class="career-info">
+        <div class="career-timeline"><div class="career-dot"></div></div>
+
+        <div class="career-box" data-reveal>
+          <div class="career-role">
+            <h4>Online Store Sales &amp; Operations</h4>
+            <h5>Prima Jaya Teknik</h5>
+          </div>
+          <h3>2024</h3>
+          <p>Selling industrial sealing products (gland packing, gaskets), handling technical customer consultations and price quotations, and managing online store inventory.</p>
+        </div>
+
+        <div class="career-box" data-reveal>
+          <div class="career-role">
+            <h4>Computer Science Undergraduate</h4>
+            <h5>Bina Nusantara University</h5>
+          </div>
+          <h3>2024</h3>
+          <p>Focused on software engineering, backend systems, web and mobile development, and software architecture. Expected graduation 2028.</p>
+        </div>
+
+        <div class="career-box" data-reveal>
+          <div class="career-role">
+            <h4>Campus Project Team Member</h4>
+            <h5>LetsMeet, PlayHub, MediaVault</h5>
+          </div>
+          <h3>NOW</h3>
+          <p>Building an AI-powered event sponsorship platform (LetsMeet), a multiplayer game platform (PlayHub), and a cross-platform media monitoring app (MediaVault) in a team.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MY WORK ===== -->
+    <section id="work" class="work">
+      <div class="work-container">
+        <h2 class="section-container">My <span>Work</span></h2>
+        <div class="work-flex">
+
+          <!-- Data detail tiap project (deskripsi & galeri) ada di js/portfolio.js -->
+          <article class="work-box">
+            <div class="work-info">
+              <div class="work-title">
+                <h3>01</h3>
+                <div>
+                  <h4>Game Session Manager</h4>
+                  <p>Web Application</p>
+                </div>
+              </div>
+              <h5>Tools and features</h5>
+              <p>Managing game sessions in one place. Click the preview to open the project gallery.</p>
+            </div>
+            <button type="button" class="work-image" data-project="proj-1" aria-label="Open Game Session Manager gallery">
+              <img src="images/project1-1.png" alt="Game Session Manager" loading="lazy" />
+              <span class="work-open"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            </button>
+          </article>
+
+          <article class="work-box">
+            <div class="work-info">
+              <div class="work-title">
+                <h3>02</h3>
+                <div>
+                  <h4>LetsMeet</h4>
+                  <p>AI-Powered Event Sponsorship Platform</p>
+                </div>
+              </div>
+              <h5>Tools and features</h5>
+              <p>Matching events with sponsors using AI. Click the preview to open the project gallery.</p>
+            </div>
+            <button type="button" class="work-image" data-project="proj-2" aria-label="Open LetsMeet gallery">
+              <img src="images/project2-1.png" alt="LetsMeet" loading="lazy" />
+              <span class="work-open"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            </button>
+          </article>
+
+          <article class="work-box">
+            <div class="work-info">
+              <div class="work-title">
+                <h3>03</h3>
+                <div>
+                  <h4>mediaVault</h4>
+                  <p>Cross-Platform Media Monitoring App</p>
+                </div>
+              </div>
+              <h5>Tools and features</h5>
+              <p>Monitoring media across multiple platforms in one app. Click the preview to open the project gallery.</p>
+            </div>
+            <button type="button" class="work-image" data-project="proj-3" aria-label="Open mediaVault gallery">
+              <img src="images/project3-1.png" alt="mediaVault" loading="lazy" />
+              <span class="work-open"><i class="fas fa-arrow-up-right-from-square"></i></span>
+            </button>
+          </article>
+
+          <article class="work-box work-cta">
+            <h3>Want to see more?</h3>
+            <p>Explore all of my repositories on GitHub.</p>
+            <a href="https://github.com/jemimaa10" target="_blank" rel="noopener" class="pill-btn">See All Works <i class="fas fa-arrow-right"></i></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TECH STACK ===== -->
+    <section id="techstack" class="techstack section-container">
+      <h2 data-reveal>Tech <span>Stack</span></h2>
+      <!-- Ikon dari devicon. Item tanpa ikon devicon pakai ikon Font Awesome (data-fa) -->
+      <ul id="tech-grid" class="tech-grid">
+        <li data-icon="html5/html5-original">HTML5</li>
+        <li data-icon="css3/css3-original">CSS3</li>
+        <li data-icon="javascript/javascript-original">JavaScript</li>
+        <li data-icon="typescript/typescript-original">TypeScript</li>
+        <li data-icon="react/react-original">React</li>
+        <li data-icon="nextjs/nextjs-original" class="invert-dark">Next.js</li>
+        <li data-icon="tailwindcss/tailwindcss-original">Tailwind CSS</li>
+        <li data-icon="nodejs/nodejs-original">Node.js</li>
+        <li data-icon="express/express-original" class="invert-dark">Express.js</li>
+        <li data-icon="nestjs/nestjs-original">NestJS</li>
+        <li data-icon="laravel/laravel-original">Laravel</li>
+        <li data-icon="php/php-original">PHP</li>
+        <li data-icon="flutter/flutter-original">Flutter</li>
+        <li data-icon="dart/dart-original">Dart</li>
+        <li data-icon="python/python-original">Python</li>
+        <li data-icon="postgresql/postgresql-original">PostgreSQL</li>
+        <li data-icon="mysql/mysql-original">MySQL</li>
+        <li data-icon="prisma/prisma-original" class="invert-dark">Prisma</li>
+        <li data-fa="fas fa-project-diagram">TypeORM</li>
+        <li data-fa="fas fa-database">SQL</li>
+        <li data-fa="fas fa-plug">REST API</li>
+        <li data-icon="socketio/socketio-original" class="invert-dark">Socket.IO</li>
+        <li data-fa="fas fa-key">JWT Auth</li>
+        <li data-icon="firebase/firebase-plain">Firebase</li>
+        <li data-fa="fas fa-robot">Gemini API</li>
+        <li data-icon="git/git-original">Git</li>
+        <li data-icon="github/github-original" class="invert-dark">GitHub</li>
+        <li data-icon="docker/docker-original">Docker</li>
+        <li data-icon="swagger/swagger-original">Swagger</li>
+        <li data-icon="jest/jest-plain">Jest</li>
+        <li data-icon="figma/figma-original">Figma</li>
+      </ul>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact section-container">
+      <h3 data-reveal>Contact</h3>
+      <div class="contact-flex">
+        <div class="contact-box" data-reveal>
+          <h4>Email</h4>
+          <p><a href="mailto:jeremy.felix@binus.ac.id">jeremy.felix@binus.ac.id</a></p>
+          <h4>Education</h4>
+          <p>Computer Science Undergraduate<br />Bina Nusantara University (2024 – 2028)</p>
+          <h4>Location</h4>
+          <p>Jakarta / Tangerang, Indonesia</p>
+        </div>
+        <div class="contact-box" data-reveal>
+          <h4>Social</h4>
+          <a href="https://github.com/jemimaa10" target="_blank" rel="noopener" class="contact-social">Github <i class="fas fa-arrow-right"></i></a>
+          <a href="https://www.linkedin.com/in/jeremy-felix-5b7447326/" target="_blank" rel="noopener" class="contact-social">Linkedin <i class="fas fa-arrow-right"></i></a>
+          <a href="https://www.instagram.com/jeremyfelixx" target="_blank" rel="noopener" class="contact-social">Instagram <i class="fas fa-arrow-right"></i></a>
+          <a href="assets/Jeremy_Felix_Resume.pdf" download="Jeremy_Felix_Resume.pdf" class="contact-social">Resume <i class="fas fa-arrow-down"></i></a>
+        </div>
+        <div class="contact-box" data-reveal>
+          <h2>Designed and Developed <br />by <span>Jeremy Felix</span></h2>
+          <h5><i class="far fa-copyright"></i> <span id="year">2026</span></h5>
+          <a href="mailto:jeremy.felix@binus.ac.id" class="pill-btn">Hire Me <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <p class="credit">
+        3D model: <a href="https://sketchfab.com/3d-models/ctm-sas-cs2-agent-model-b143861dd5a64ab3a9930c057a0fcef9" target="_blank" rel="noopener">"CTM_SAS | CS2 Agent Model"</a>
+        by Alex, licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- popup detail project, dibuka setelah animasi smoke (js/portfolio.js) -->
+  <div id="project-modal" class="modal hidden opacity-0" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" id="modal-close" class="modal-close" aria-label="Close popup">&times;</button>
+      <p id="modal-category" class="modal-category"></p>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <p id="modal-desc" class="modal-desc"></p>
+      <h3 class="modal-sub">Project Gallery</h3>
+      <div id="modal-gallery" class="modal-gallery"></div>
     </div>
-  </footer>
+  </div>
 
-  // back to top
-  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-    class="fixed bottom-6 right-6 w-10 h-10 bg-accent hover:bg-accent-hover text-dark-nav rounded-full flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
-    <i class="fas fa-chevron-up text-sm"></i>
-  </button>
-
-  <script src="js/main.js"></script>
-  <script src="js/loader.js?v=3"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/portfolio.js?v=10"></script>
+  <script src="js/theme.js?v=2"></script>
+  <script src="js/site.js?v=2"></script>
+  <script type="module" src="js/character.js?v=2"></script>
 </body>
 </html>
-

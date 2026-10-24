@@ -2,7 +2,7 @@
   <div class="max-w-6xl mx-auto px-6">
 
     <div class="text-center mb-12">
-      <p class="text-accent text-xs uppercase tracking-widest mb-3">
+      <p class="hud-label text-accent text-xs uppercase mb-3">
         Portfolio
       </p>
       <h2 class="text-3xl md:text-4xl font-bold text-white">
@@ -20,7 +20,7 @@
       <button
         type="button"
         data-project="proj-1"
-        class="project-card text-left bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-blue-500 transition group"
+        class="project-card text-left bg-gray-900 pixel-card overflow-hidden border border-gray-800 card-hover transition group"
       >
         <div class="h-52 bg-gray-800 overflow-hidden">
           <img
@@ -30,14 +30,14 @@
           >
         </div>
         <div class="p-6">
-          <p class="text-blue-400 text-xs uppercase tracking-widest mb-2">
+          <p class="hud-label text-accent text-xs uppercase mb-2">
             Project 01
           </p>
           <h3 class="text-xl font-bold text-white mb-3">
             Game Session Manager
           </h3>
           <p class="text-gray-400 text-sm">
-            Click to view project details.
+            ▶ Klik untuk deploy smoke
           </p>
         </div>
       </button>
@@ -46,7 +46,7 @@
       <button
         type="button"
         data-project="proj-2"
-        class="project-card text-left bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-blue-500 transition group"
+        class="project-card text-left bg-gray-900 pixel-card overflow-hidden border border-gray-800 card-hover transition group"
       >
         <div class="h-52 bg-gray-800 overflow-hidden">
           <img
@@ -56,14 +56,14 @@
           >
         </div>
         <div class="p-6">
-          <p class="text-blue-400 text-xs uppercase tracking-widest mb-2">
+          <p class="hud-label text-accent text-xs uppercase mb-2">
             Project 02
           </p>
           <h3 class="text-xl font-bold text-white mb-3">
             LetsMeet
           </h3>
           <p class="text-gray-400 text-sm">
-            Click to view project details.
+            ▶ Klik untuk deploy smoke
           </p>
         </div>
       </button>
@@ -72,7 +72,7 @@
       <button
         type="button"
         data-project="proj-3"
-        class="project-card text-left bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-blue-500 transition group"
+        class="project-card text-left bg-gray-900 pixel-card overflow-hidden border border-gray-800 card-hover transition group"
       >
         <div class="h-52 bg-gray-800 overflow-hidden">
           <img
@@ -82,14 +82,14 @@
           >
         </div>
         <div class="p-6">
-          <p class="text-blue-400 text-xs uppercase tracking-widest mb-2">
+          <p class="hud-label text-accent text-xs uppercase mb-2">
             Project 03
           </p>
           <h3 class="text-xl font-bold text-white mb-3">
             mediaVault
           </h3>
           <p class="text-gray-400 text-sm">
-            Click to view project details.
+            ▶ Klik untuk deploy smoke
           </p>
         </div>
       </button>
@@ -102,11 +102,11 @@
 
 <div
   id="project-modal"
-  class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 p-4"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/30 p-4 opacity-0 transition-opacity duration-500"
   aria-hidden="true"
 >
   <div
-    class="relative bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto"
+    class="relative bg-gray-900/85 backdrop-blur-sm border border-gray-700 pixel-card w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl"
     role="dialog"
     aria-modal="true"
     aria-labelledby="modal-title"
@@ -117,7 +117,7 @@
       type="button"
       id="modal-close"
       aria-label="Close popup"
-      class="sticky top-3 float-right mr-3 mt-3 z-10 w-10 h-10 rounded-full bg-gray-800 text-white hover:bg-red-600 transition text-2xl"
+      class="sticky top-3 float-right mr-3 mt-3 z-10 w-10 h-10 pixel-card bg-gray-800 text-white hover:bg-red-600 transition text-2xl"
     >
       &times;
     </button>
@@ -126,7 +126,7 @@
 
       <p
         id="modal-category"
-        class="text-blue-400 text-xs uppercase tracking-widest mb-3"
+        class="hud-label text-accent text-xs uppercase mb-3"
       ></p>
 
       <h2
@@ -151,167 +151,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- js -->
-
-<script>
-(function () {
-  const projectDetails = {
-    "proj-1": {
-      title: "Game Session Manager",
-      category: "Project 01",
-      description:
-        "Tuliskan deskripsi proyek pertama kamu di sini. Jelaskan tujuan, fitur, teknologi, dan hasil proyek.",
-      images: [
-        "images/project1-1.png",
-        "images/project1-2.png",
-        "images/project1-3.png",
-        "images/project1-4.png",
-        "images/project1-5.png"
-      ]
-    },
-
-    "proj-2": {
-      title: "LetsMeet",
-      category: "Project 02",
-      description:
-        "Tuliskan deskripsi proyek kedua kamu di sini. Jelaskan fitur utama dan kontribusi kamu dalam proyek.",
-      images: [
-        "images/project2-1.png",
-        "images/project2-2.png",
-        "images/project2-3.png",
-        "images/project2-4.png",
-        "images/project2-5.png"
-      ]
-    },
-
-    "proj-3": {
-      title: "mediaVault",
-      category: "Project 03",
-      description:
-        "Tuliskan deskripsi proyek ketiga kamu di sini. Jelaskan gambaran aplikasi dan teknologi yang digunakan.",
-      images: [
-        "images/project3-1.png",
-        "images/project3-2.png",
-        "images/project3-3.png",
-        "images/project3-4.png",
-        "images/project3-5.png"
-      ]
-    }
-  };
-
-  const modal = document.getElementById("project-modal");
-  const modalTitle = document.getElementById("modal-title");
-  const modalCategory = document.getElementById("modal-category");
-  const modalDesc = document.getElementById("modal-desc");
-  const gallery = document.getElementById("modal-gallery");
-  const closeButton = document.getElementById("modal-close");
-
-  // Stop if the required HTML elements are missing
-  if (
-    !modal ||
-    !modalTitle ||
-    !modalCategory ||
-    !modalDesc ||
-    !gallery ||
-    !closeButton
-  ) {
-    console.error("Portfolio modal: required HTML elements not found.");
-    return;
-  }
-
-  let previousFocus = null;
-
-  function openProjectModal(projectId) {
-    const project = projectDetails[projectId];
-
-    if (!project) {
-      console.error("Project not found:", projectId);
-      return;
-    }
-
-    previousFocus = document.activeElement;
-
-    modalTitle.textContent = project.title;
-    modalCategory.textContent = project.category;
-    modalDesc.textContent = project.description;
-
-    // Clear the previous project's gallery
-    gallery.replaceChildren();
-
-    // Add five photos for the selected project
-    project.images.forEach(function (imagePath, index) {
-      const container = document.createElement("div");
-      container.className =
-        "bg-gray-800 rounded-xl overflow-hidden";
-
-      const img = document.createElement("img");
-      img.src = imagePath;
-      img.alt = project.title + " - Photo " + (index + 1);
-      img.loading = "lazy";
-      img.className = "w-full h-56 md:h-64 object-cover";
-
-      img.onerror = function () {
-        img.onerror = null;
-
-        const message = document.createElement("div");
-        message.className =
-          "h-56 md:h-64 flex items-center justify-center p-4 text-center text-sm text-gray-400";
-        message.textContent =
-          "Foto tidak ditemukan: " + imagePath;
-
-        img.replaceWith(message);
-      };
-
-      container.appendChild(img);
-      gallery.appendChild(container);
-    });
-
-    // Display the popup
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    closeButton.focus();
-  }
-
-  function closeProjectModal() {
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-
-    if (previousFocus && typeof previousFocus.focus === "function") {
-      previousFocus.focus();
-    }
-  }
-
-  // Use event listeners instead of inline onclick attributes
-  document.querySelectorAll("[data-project]").forEach(function (button) {
-    button.addEventListener("click", function () {
-      openProjectModal(button.dataset.project);
-    });
-  });
-
-  closeButton.addEventListener("click", closeProjectModal);
-
-  // Close when clicking the dark backdrop
-  modal.addEventListener("click", function (event) {
-    if (event.target === modal) {
-      closeProjectModal();
-    }
-  });
-
-  // Close with Escape
-  document.addEventListener("keydown", function (event) {
-    if (
-      event.key === "Escape" &&
-      !modal.classList.contains("hidden")
-    ) {
-      closeProjectModal();
-    }
-  });
-})();
-</script>
