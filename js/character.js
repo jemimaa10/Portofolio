@@ -3,9 +3,8 @@
 // Download versi GLB dari Sketchfab, lalu simpan sebagai assets/models/agent.glb
 
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { loadModel, cloneModel } from './models.js';
 
 const MODEL_URL = 'assets/models/agent.glb';
 // Kalau model menghadap ke samping / belakang, putar di sini (radian), mis. Math.PI atau Math.PI / 2
@@ -102,21 +101,14 @@ function start() {
   let loaded = false;
 
   // ---- Load model ----
-  const loader = new GLTFLoader();
-  const draco = new DRACOLoader();
-  draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
-  loader.setDRACOLoader(draco);
-
-  loader.load(
-    MODEL_URL,
+  loadModel(MODEL_URL, xhr => {
+    if (xhr.total) emit('character:progress', { pct: (xhr.loaded / xhr.total) * 100 });
+  }).then(
     gltf => {
-      setupModel(gltf.scene);
+      setupModel(cloneModel(gltf));
       loaded = true;
       resize();
       emit('character:ready');
-    },
-    xhr => {
-      if (xhr.total) emit('character:progress', { pct: (xhr.loaded / xhr.total) * 100 });
     },
     err => {
       console.error('[character] Gagal memuat model:', MODEL_URL, err);

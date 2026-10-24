@@ -13,11 +13,13 @@ function applyTheme(light) {
   } catch (err) {
     // localStorage bisa diblokir (mode private), tema tetap jalan tanpa disimpan
   }
+  setSwitch(light);
+}
+
+// Posisi knob switch. Dipanggil langsung saat diklik, jadi knob sudah geser sebelum flash meledak.
+function setSwitch(light) {
   document.querySelectorAll('.theme-toggle').forEach(button => {
-    const icon = button.querySelector('i');
-    icon.classList.toggle('fa-sun', !light);
-    icon.classList.toggle('fa-moon', light);
-    button.setAttribute('aria-label', light ? 'Ganti ke dark mode' : 'Ganti ke light mode');
+    button.setAttribute('aria-checked', String(light));
   });
 }
 
@@ -32,6 +34,7 @@ function toggleTheme() {
   }
   if (scene.active) return; // tunggu animasi sebelumnya selesai
 
+  setSwitch(toLight);
   unlockAudio();
   scene.playFlash(toLight ? '#ffffff' : '#000000', () => applyTheme(toLight));
 }

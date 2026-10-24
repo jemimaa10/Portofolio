@@ -62,177 +62,12 @@ const SFX_FILES = {
   flashBang: null
 };
 
-const PIXEL = 3; // 1 pixel canvas = 3 pixel layar, biar kelihatan pixel art
-const SPRITE_W = 24;
-const SPRITE_H = 32;
+const PIXEL = 3; // smoke & flash digambar di canvas 1/3 resolusi layar, biar ringan
 
-// Sprite 24x32 menghadap kanan, dirakit dari beberapa bagian (kepala, badan, lengan, kaki).
-// Tiap huruf = warna di palette tim, '.' = transparan.
-const HEADS = {
-  // Teroris: balaclava hitam dengan celah mata
-  t: [
-    '........kkkkkk',
-    '.......khhhhhhk',
-    '......khhhhhhHhk',
-    '......khhhhhhhHk',
-    '......khhhssksSk',
-    '......khhhhhhhhk',
-    '......khhhhhhhhk',
-    '.......khhhhhhk',
-    '........kHhhhk'
-  ],
-  // Counter-teroris: helm, goggles, masker
-  ct: [
-    '........kkkkkk',
-    '......kkhhhhhhkk',
-    '.....khhhhhhhHHhk',
-    '.....khhhhhhhhhhhk',
-    '......khhkkkggggk',
-    '......khhksskkkkk',
-    '......kHMMMMMMMk',
-    '.......kMMMMMMk',
-    '........kMMMMk'
-  ]
-};
-
-// Badan sambil pegang rifle di depan dada
-const TORSO_HOLD = [
-  '.......kjjjjjjjk',
-  '......kjjvvvvvjjk',
-  '.....kjjvVvvvVvjjk',
-  '.....kjjvvvvvvvjjk',
-  '.....kJjvVVvVVvjxk',
-  '..kmmkJjvvvvkwwwwwwwk',
-  '..kmmmkxxwwwWWWWwwwwwwwk',
-  '..kmmkJjvvvkwmmkxxk',
-  '.....kJjvvvkwmmk',
-  '.....kJjjjjjkmk',
-  '.....kVVVVVVVVk',
-  '......kpppppppk'
-];
-
-// Badan saat melempar: rifle diselempang di punggung
-const TORSO_THROW = [
-  '..kw...kjjjjjjjk',
-  '...kw.kjjvvvvvjjkk',
-  '....kwjjvVvvvVvjjk',
-  '.....kwjvvvvvvvjjk',
-  '.....kJwvVVvVVvjjk',
-  '.....kJjwvvvvvvjxk',
-  '.....kJjvwvvvvvkxk',
-  '.....kJjvvwvvvvk',
-  '.....kJjvvvwvvvk',
-  '.....kJjjjjjjk',
-  '.....kVVVVVVVVk',
-  '......kpppppppk'
-];
-
-// Lengan terangkat ke atas, dengan / tanpa granat di tangan
-const ARM_NADE = [
-  '..................kk',
-  '.................kWWk',
-  '.................knnk',
-  '.................kxxk',
-  '................kxxk',
-  '................kjjk',
-  '...............kjjk',
-  '...............kjJk',
-  '...............kjJk'
-];
-const ARM_EMPTY = ['', '', ''].concat(ARM_NADE.slice(3));
-
-const LEGS_STAND = [
-  '......kppPppppk',
-  '......kpppkpppk',
-  '......kpppkpppk',
-  '......kpPpkpPpk',
-  '......kpPpkpPpk',
-  '......kpppkpppk',
-  '......kpppkpppk',
-  '......kPPPkPPPk',
-  '......koookooook',
-  '......kooookooook',
-  '......kkkkkkkkkkk'
-];
-
-const LEGS_STRIDE = [
-  '......kppPppppk',
-  '.....kpppkkppppk',
-  '.....kpppk.kpppk',
-  '....kpPpk...kpPpk',
-  '....kpPpk...kpPpk',
-  '...kpppk.....kpppk',
-  '...kpppk.....kpppk',
-  '..kPPPk.......kPPPk',
-  '..koook.......koooook',
-  '.kooook.......kooooook',
-  '.kkkkkk.......kkkkkkkk'
-];
-
-// Kaki ditekuk saat melompat (jumpthrow)
-const LEGS_TUCK = [
-  '......kppPppppk',
-  '......kpppkpppk',
-  '.....kpppk.kpppk',
-  '....kpPpk...kpPpk',
-  '...kpPpk.....kpppk',
-  '...kpppk.....kPPPk',
-  '...kpppk....koooook',
-  '...kPPPk....kooooook',
-  '...koooook..kkkkkkk',
-  '...kooooook',
-  '...kkkkkkkk'
-];
-
-// Tumpuk beberapa bagian jadi satu sprite. parts = [[barisAwal, rows], ...]
-function buildSprite(parts) {
-  const grid = Array.from({ length: SPRITE_H }, () => Array(SPRITE_W).fill('.'));
-  for (const [top, rows] of parts) {
-    rows.forEach((row, r) => {
-      for (let c = 0; c < row.length; c++) {
-        if (row[c] !== '.') grid[top + r][c] = row[c];
-      }
-    });
-  }
-  return grid.map(row => row.join(''));
-}
-
-function buildTeamSprites(head) {
-  return {
-    walk1: buildSprite([[0, head], [9, TORSO_HOLD], [21, LEGS_STRIDE]]),
-    walk2: buildSprite([[0, head], [9, TORSO_HOLD], [21, LEGS_STAND]]),
-    throwNade: buildSprite([[0, head], [9, TORSO_THROW], [21, LEGS_STAND], [1, ARM_NADE]]),
-    throwEmpty: buildSprite([[0, head], [9, TORSO_THROW], [21, LEGS_STAND], [1, ARM_EMPTY]]),
-    jumpNade: buildSprite([[0, head], [9, TORSO_THROW], [21, LEGS_TUCK], [1, ARM_NADE]]),
-    jumpEmpty: buildSprite([[0, head], [9, TORSO_THROW], [21, LEGS_TUCK], [1, ARM_EMPTY]])
-  };
-}
-
+// Agen 3D-nya ada di js/agents.js. Di sini cuma nama & warna tim untuk teks radio.
 const TEAMS = {
-  t: {
-    name: 'T',
-    color: '#e0b25a',
-    sprites: buildTeamSprites(HEADS.t),
-    palette: {
-      k: '#0d0d0d', s: '#c68e5c', S: '#9c6a42',
-      h: '#1f1f1f', H: '#3a3a3a',
-      j: '#9a7b4f', J: '#6e5634', v: '#5b5236', V: '#3f3924',
-      p: '#4f4a3c', P: '#38342a', o: '#2a2118', x: '#2b2b2b',
-      w: '#262626', W: '#4a4a4a', m: '#8a5a2b', n: '#5b6b55'
-    }
-  },
-  ct: {
-    name: 'CT',
-    color: '#7ea7e0',
-    sprites: buildTeamSprites(HEADS.ct),
-    palette: {
-      k: '#0d0d0d', s: '#c68e5c', S: '#9c6a42',
-      h: '#2b3444', H: '#4a5872', g: '#79b8d9', M: '#1e1e1e',
-      j: '#2e3d55', J: '#1f2a3c', v: '#1c232e', V: '#2c3746',
-      p: '#2a3445', P: '#1d2431', o: '#151515', x: '#161616',
-      w: '#1f1f1f', W: '#474747', m: '#333333', n: '#5b6b55'
-    }
-  }
+  t: { name: 'T', color: '#e0b25a' },
+  ct: { name: 'CT', color: '#7ea7e0' }
 };
 
 // Timeline animasi (ms sejak kartu diklik)
@@ -256,7 +91,12 @@ const JT = {
   leave: 2250,  // sudah keluar layar
   pop: 1800     // flash meledak, tema berganti
 };
-const JUMP_HEIGHT = 16; // tinggi lompatan (pixel sprite)
+
+// Timeline yang dipakai agen 3D (js/agents.js) untuk tiap jenis granat
+const AGENT_TIMES = {
+  smoke: { walkEnd: T_WALK_END, release: T_THROW, turn: T_TURN, leave: T_LEAVE_END, pop: T_POP },
+  flash: { walkEnd: T_WALK_END, jump: JT.jump, release: JT.release, land: JT.land, turn: JT.turn, leave: JT.leave, pop: JT.pop }
+};
 
 function clamp01(x) { return Math.max(0, Math.min(1, x)); }
 function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
@@ -473,42 +313,6 @@ function createSmokeScene() {
   }
   window.addEventListener('resize', () => { if (run) resize(); });
 
-  // Agen lebih besar di layar lebar, lebih kecil di HP
-  function spriteScale() {
-    return window.innerWidth >= 768 ? 2 : 1;
-  }
-
-  function drawSprite(frame, x, y, flip) {
-    const rows = run.team.sprites[frame];
-    const palette = run.palette;
-    const scale = spriteScale();
-    for (let r = 0; r < rows.length; r++) {
-      for (let c = 0; c < rows[r].length; c++) {
-        const color = palette[rows[r][c]];
-        if (!color) continue;
-        const col = flip ? SPRITE_W - 1 - c : c;
-        ctx.fillStyle = color;
-        ctx.fillRect(Math.round(x) + col * scale, Math.round(y) + r * scale, scale, scale);
-      }
-    }
-  }
-
-  function drawGrenade(x, y) {
-    x = Math.round(x);
-    y = Math.round(y);
-    ctx.fillStyle = '#d4d4d4';
-    ctx.fillRect(x - 1, y - 5, 2, 1);
-    ctx.fillStyle = '#9a9a9a';
-    ctx.fillRect(x - 2, y - 4, 4, 1);
-    // Smoke: badan hijau. Flashbang: badan abu terang dengan sabuk gelap
-    ctx.fillStyle = run.kind === 'flash' ? '#c9ccd1' : '#5b6b55';
-    ctx.fillRect(x - 2, y - 3, 4, 6);
-    if (run.kind === 'flash') {
-      ctx.fillStyle = '#3a3a3a';
-      ctx.fillRect(x - 2, y, 4, 1);
-    }
-  }
-
   function spawnPuffs() {
     const spread = Math.max(W, H) * 0.45;
     // Di light mode smoke dibuat lebih gelap supaya tetap kelihatan
@@ -550,72 +354,17 @@ function createSmokeScene() {
     return fade >= 1;
   }
 
-  // Tinggi agen di atas tanah saat jumpthrow (pixel sprite, sebelum dikali scale)
-  function jumpLift(t) {
-    if (t <= JT.jump || t >= JT.land) return 0;
-    return Math.sin(Math.PI * (t - JT.jump) / (JT.land - JT.jump)) * JUMP_HEIGHT;
-  }
-
-  // Jalan masuk -> pegang flash -> lompat & lempar di udara -> mendarat -> balik keluar
-  function drawJumpThrow(t, standX, groundY, scale, spriteW) {
-    if (t >= JT.leave) return;
-    const step = Math.floor(t / 120) % 2 ? 'walk1' : 'walk2';
-    const lift = jumpLift(t) * scale;
-
-    // Bayangan di tanah, mengecil saat agen di udara
-    if (t >= T_WALK_END && t < JT.turn) {
-      const w = Math.round((14 - lift / scale / 3) * scale);
-      ctx.fillStyle = 'rgba(0,0,0,0.35)';
-      ctx.fillRect(Math.round(standX + 5 * scale + (14 * scale - w) / 2), groundY + SPRITE_H * scale - scale, w, scale);
-    }
-
-    if (t < T_WALK_END) {
-      drawSprite(step, -spriteW + (standX + spriteW) * (t / T_WALK_END), groundY, false);
-    } else if (t < JT.jump) {
-      drawSprite('throwNade', standX, groundY, false);
-    } else if (t < JT.land) {
-      drawSprite(t < JT.release ? 'jumpNade' : 'jumpEmpty', standX, groundY - lift, false);
-    } else if (t < JT.turn) {
-      drawSprite('throwEmpty', standX, groundY, false);
-    } else {
-      const p = (t - JT.turn) / (JT.leave - JT.turn);
-      drawSprite(step, standX - (standX + spriteW) * p, groundY, true);
-    }
-  }
-
   function frame(now) {
     const t = now - run.start;
     ctx.clearRect(0, 0, W, H);
 
-    const scale = spriteScale();
-    const spriteW = SPRITE_W * scale;
-    const groundY = H - SPRITE_H * scale - 12;
-    const standX = W * 0.12;
-
-    // Agen: jalan masuk -> lempar -> balik badan dan keluar
-    const showAgent = !run.skipped;
-    if (showAgent && run.kind === 'flash') {
-      drawJumpThrow(t, standX, groundY, scale, spriteW);
-    } else if (showAgent && t < T_LEAVE_END) {
-      const step = Math.floor(t / 120) % 2 ? 'walk1' : 'walk2';
-      if (t < T_WALK_END) {
-        drawSprite(step, -spriteW + (standX + spriteW) * (t / T_WALK_END), groundY, false);
-      } else if (t < T_TURN) {
-        drawSprite(t < T_THROW ? 'throwNade' : 'throwEmpty', standX, groundY, false);
-      } else {
-        const p = (t - T_TURN) / (T_LEAVE_END - T_TURN);
-        drawSprite(step, standX - (standX + spriteW) * p, groundY, true);
-      }
-    }
-
-    // Granat terbang melengkung dari tangan ke tengah layar
-    const throwAt = run.kind === 'flash' ? JT.release : T_THROW;
-    if (showAgent && t >= throwAt && t < run.popTime) {
-      const p = (t - throwAt) / (run.popTime - throwAt);
-      const sx = standX + 19 * scale;
-      // jumpthrow: granat lepas dari tangan yang sedang di udara
-      const sy = groundY + 2 * scale - (run.kind === 'flash' ? jumpLift(JT.release) * scale : 0);
-      drawGrenade(sx + (run.cx - sx) * p, sy + (run.cy - sy) * p - Math.sin(Math.PI * p) * H * 0.3);
+    // Agen 3D: jalan masuk -> lempar granat ke tengah layar -> balik badan dan keluar.
+    // Kalau di-skip, agen & granat langsung hilang.
+    if (run.stage && run.skipped) {
+      run.stage.clear();
+      run.stage = null;
+    } else if (run.stage) {
+      run.stage.render(t, window.innerWidth / 2, window.innerHeight / 2);
     }
 
     if (!run.popAt && (run.skipped || t >= run.popTime)) {
@@ -666,6 +415,7 @@ function createSmokeScene() {
   function stop() {
     cancelAnimationFrame(raf);
     if (run) run.timers.forEach(clearTimeout);
+    if (run && run.stage) run.stage.clear();
     raf = null;
     run = null;
     canvas.style.display = 'none';
@@ -685,11 +435,14 @@ function createSmokeScene() {
   // kind: 'smoke' (popup project) atau 'flash' (ganti tema)
   function start(kind, extra) {
     if (run) stop();
-    const team = Math.random() < 0.5 ? TEAMS.t : TEAMS.ct;
-    // Granat di tangan agen ikut warna jenis granatnya
-    const palette = kind === 'flash' ? { ...team.palette, n: '#c9ccd1' } : team.palette;
+    // window.agentStage dipasang js/agents.js setelah model 3D siap. Belum siap = tanpa agen.
+    const stage = window.agentStage || null;
+    let teamKey = Math.random() < 0.5 ? 't' : 'ct';
+    // model T belum ada -> stage memakai CT, teks radio ikut
+    if (stage) teamKey = stage.begin(teamKey, kind, AGENT_TIMES[kind]);
+    const team = TEAMS[teamKey];
     const popTime = kind === 'flash' ? JT.pop : T_POP;
-    run = { kind, start: performance.now(), team, palette, cx: 0, cy: 0, popAt: 0, popTime, fadeAt: 0, puffs: [], skipped: false, opened: false, timers: [], ...extra };
+    run = { kind, start: performance.now(), team, stage, cx: 0, cy: 0, popAt: 0, popTime, fadeAt: 0, puffs: [], skipped: false, opened: false, timers: [], ...extra };
     resize();
 
     const line = pickLine(kind);
