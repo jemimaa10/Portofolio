@@ -48,6 +48,9 @@ body {
   font-family: 'Geist', system-ui, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   overflow-x: hidden;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -388,7 +391,7 @@ html.js body:not(.loaded) .landing-info { opacity: 0; transform: translate(40px,
   color: var(--text);
 }
 /* di layar lebar detail tiap kotak terbuka saat di-hover / fokus */
-@media (hover: hover) and (min-width: 901px) {
+@media (hover: hover) and (min-width: 1200px), (hover: hover) and (min-width: 901px) and (orientation: landscape) {
   .what-box p,
   .what-box .what-tags {
     max-height: 0;
@@ -403,17 +406,21 @@ html.js body:not(.loaded) .landing-info { opacity: 0; transform: translate(40px,
   .what-box:hover .what-tags,
   .what-box:focus-visible .what-tags,
   .what-list:not(:hover) .what-box:first-child .what-tags { max-height: 120px; margin-top: 16px; opacity: 1; }
+  /* kotak pertama tersorot selama belum ada yang di-hover (di layar sentuh tidak, biar tidak terlihat "nyangkut") */
+  .what-list:not(:hover) .what-box:first-child {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+  }
+  .what-list:not(:hover) .what-box:first-child::before,
+  .what-list:not(:hover) .what-box:first-child::after { opacity: 1; }
 }
 .what-box:hover,
-.what-box:focus-visible,
-.what-list:not(:hover) .what-box:first-child {
+.what-box:focus-visible {
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 .what-box:hover::before, .what-box:hover::after,
-.what-box:focus-visible::before, .what-box:focus-visible::after,
-.what-list:not(:hover) .what-box:first-child::before,
-.what-list:not(:hover) .what-box:first-child::after { opacity: 1; }
+.what-box:focus-visible::before, .what-box:focus-visible::after { opacity: 1; }
 
 /* ---------- Career & Experience ---------- */
 .career { padding-block: 120px; }
@@ -496,7 +503,7 @@ html.js body:not(.loaded) .landing-info { opacity: 0; transform: translate(40px,
 }
 .work-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 /* desktop: section ini di-pin satu layar penuh, jadi gambar ikut tinggi layar (laptop 720p tetap muat) */
-@media (min-width: 901px) {
+@media (min-width: 1200px), (min-width: 901px) and (orientation: landscape) {
   .work { padding-block: 90px 50px; }
   .work h2 { margin-bottom: 30px; }
   .work-image { max-height: max(180px, calc(100vh - 470px)); }
@@ -521,6 +528,10 @@ html.js body:not(.loaded) .landing-info { opacity: 0; transform: translate(40px,
 }
 .work-image:hover .work-open,
 .work-image:focus-visible .work-open { opacity: 1; transform: scale(1); }
+/* layar sentuh tidak punya hover: ikon "buka" selalu tampil supaya kelihatan bisa di-tap */
+@media (hover: none) {
+  .work-open { opacity: 1; transform: scale(1); }
+}
 .work-cta {
   justify-content: center;
   align-items: flex-start;
@@ -631,7 +642,9 @@ html:not(.light) .tech-grid li.invert-dark img { filter: invert(1); }
   width: 100%;
   max-width: 1000px;
   max-height: 90vh;
+  max-height: 90dvh; /* HP: ikut tinggi layar yang benar-benar terlihat (address bar) */
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 36px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -659,7 +672,8 @@ html:not(.light) .tech-grid li.invert-dark img { filter: invert(1); }
 .modal-sub { font-size: 18px; font-weight: 500; margin-bottom: 16px; }
 .modal-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .modal-shot { overflow: hidden; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
-.modal-shot img { width: 100%; height: 250px; object-fit: cover; }
+/* rasio 16:10 (bukan tinggi tetap) supaya screenshot HP yang sudah dibingkai tampil utuh */
+.modal-shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
 .modal-shot-missing {
   height: 250px;
   display: grid;
@@ -670,8 +684,10 @@ html:not(.light) .tech-grid li.invert-dark img { filter: invert(1); }
   color: var(--muted);
 }
 
-/* ---------- Tablet & HP ---------- */
-@media (max-width: 900px) {
+/* ---------- Tablet & HP ----------
+   Tablet portrait (iPad Pro 1024px dsb.) ikut layout ini juga, karena di layout desktop
+   teks landing & About menumpuk di atas karakter. Query yang sama dipakai di js/site.js & js/character.js */
+@media (max-width: 900px), (max-width: 1199px) and (orientation: portrait) {
   .nav-email, .social-rail, .resume-btn { display: none; }
   .nav-links { gap: 22px; }
 
@@ -704,12 +720,74 @@ html:not(.light) .tech-grid li.invert-dark img { filter: invert(1); }
   .contact-flex { grid-template-columns: 1fr; gap: 40px; }
   .modal-panel { padding: 24px 18px; }
   .modal-gallery { grid-template-columns: 1fr; }
-  .modal-shot img, .modal-shot-missing { height: 210px; }
+  .modal-shot-missing { height: 210px; }
+}
+
+/* ---------- Tablet (portrait) ---------- */
+@media (min-width: 601px) and (max-width: 900px), (min-width: 601px) and (max-width: 1199px) and (orientation: portrait) {
+  .landing-intro { top: 13%; }
+  .landing-intro h1 { font-size: clamp(56px, 8.5vw, 96px); }
+  .landing-intro h2, .landing-info h3 { font-size: clamp(18px, 2.4vw, 26px); }
+  .landing-role { font-size: clamp(48px, 7vw, 80px); }
+
+  .about { padding-block: 120px; }
+  .about-me { width: min(100%, 760px); }
+
+  .what-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .work-flex { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+  .work-box { border-bottom: 0; padding-block: 24px; }
+  .work-title h3 { font-size: 44px; }
+  .work-title h4 { font-size: 21px; }
+
+  .contact-flex { grid-template-columns: 1fr 1fr; }
+  .contact-flex .contact-box:last-child { grid-column: 1 / -1; }
+
+  .modal-panel { padding: 30px; }
+  .modal-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 600px) {
+  .about { padding-block: 72px; }
+  .whatido { gap: 32px; padding-block: 64px; }
+  .what-box { padding: 22px 20px; }
+  .what-num { top: 22px; right: 20px; }
+  .career, .work, .techstack { padding-block: 64px; }
+  .career-info { padding-left: 22px; }
+  .work-title h3 { font-size: 42px; }
+  .work-title h4 { font-size: 21px; }
+  .work h2, .techstack h2, .contact > h3 { margin-bottom: 32px; }
+  .tech-grid { gap: 8px; }
+  .tech-grid li { gap: 8px; padding: 7px 14px 7px 9px; font-size: 13px; }
+  .tech-grid img, .tech-grid li > i { width: 20px; height: 20px; }
+  .tech-grid li > i { font-size: 14px; }
+  .contact { padding-top: 64px; }
+  .contact-box p { font-size: 16px; }
+  .contact-social { font-size: 20px; padding-block: 12px; }
+  .credit { margin-top: 56px; }
 }
 
 @media (max-width: 420px) {
   .nav-links { gap: 16px; }
   .nav-links a { font-size: 11px; letter-spacing: 0.1em; }
+}
+
+@media (max-width: 350px) {
+  .nav-links { gap: 12px; }
+  .nav-links a { letter-spacing: 0.05em; }
+  .landing-intro h1 { font-size: 40px; }
+  .landing-role { font-size: 32px; }
+}
+
+/* HP landscape: layar pendek, teks landing jangan sampai tumpang tindih */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+  .landing { min-height: 320px; }
+  .landing-intro { top: 20%; }
+  .landing-intro h1 { font-size: 36px; }
+  .landing-info { bottom: 8%; }
+  .landing-role { font-size: 30px; }
+  .scroll-hint { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

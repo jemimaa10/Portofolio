@@ -37,6 +37,30 @@ const projectDetails = {
       'images/project3-4.png',
       'images/project3-5.png'
     ]
+  },
+  'proj-4': {
+    title: 'AUTO18',
+    category: 'Project 04 · Used Car Showroom Web App',
+    description: 'A web app for a used car showroom that covers both sides of the business. Buyers browse a car marketplace with detailed filters, inspection reports, a credit simulator, and test drive booking. Sellers get an instant price estimate and a 3-step sell or trade-in form. Behind it is a showroom panel for car stock, sales processing (cash, transfer, or credit with trade-in), an accessories and service POS with thermal receipts, and a dashboard with sales reports and CSV export. Built with React 18, Vite, Tailwind CSS, and Motion. All data is saved in localStorage, so it runs without a back-end.',
+    images: [
+      'images/project4-1.png',
+      'images/project4-2.png',
+      'images/project4-3.png',
+      'images/project4-4.png',
+      'images/project4-5.png'
+    ]
+  },
+  'proj-5': {
+    title: 'Honkai Star Retail',
+    category: 'Project 05 · Mobile Marketplace App',
+    description: 'A Honkai: Star Rail themed marketplace app for in-game items such as Light Cones, Relics, materials, and currency. Users sign in with email or Google, browse the market, add items to a cart, and check out with an in-app credit wallet that can be topped up; purchased items go to their inventory. Admins get a separate panel to add, edit, and delete products and manage stock. Built with a Flutter front-end (Provider) and a Node.js + Express.js REST API on MySQL, with JWT authentication, bcrypt password hashing, Google OAuth, and role-based access for admins and users.',
+    images: [
+      'images/project5-1.png',
+      'images/project5-2.png',
+      'images/project5-3.png',
+      'images/project5-4.png',
+      'images/project5-5.png'
+    ]
   }
 };
 
@@ -46,9 +70,8 @@ const projectDetails = {
 // Tiap lemparan memilih satu kalimat secara acak.
 const VOICE_LINES = {
   smoke: [
-    { text: 'Smoke out!', src: null },
-    { text: 'Throwing smoke!', src: null },
-    { text: 'Deploying smoke!', src: null }
+    // Voice line CS:GO "Smoke out" (myinstants.com/en/instant/cs-go-smoke-88929)
+    { text: 'Smoke out!', src: 'sounds/smoke.mp3' }
   ],
   flash: [
     // Voice line CS2 "Throwing flashbang", dipotong jadi kata "flashbang" saja
@@ -58,7 +81,6 @@ const VOICE_LINES = {
 const VOICE_TTS = true;
 // Efek suara ledakan dari file (opsional), mis. 'sounds/flashbang.mp3'. null = suara sintetis di bawah
 const SFX_FILES = {
-  smokePop: null,
   flashBang: null
 };
 
@@ -78,6 +100,9 @@ const T_LEAVE_END = 1800; // agen sudah keluar layar
 const T_POP = 1500;       // granat meledak jadi smoke
 const T_MODAL = 2000;     // detail project muncul di dalam smoke
 const FADE_MS = 900;      // durasi smoke hilang saat popup ditutup
+// Disamakan dengan sounds/smoke.mp3 (0.6 dtk): kata kedua mulai ~0.45 dtk setelah suara mulai,
+// jadi suara dimulai lebih awal supaya kata itu pas saat granat lepas dari tangan
+const T_VOICE = T_THROW - 450;
 
 // Flashbang (ganti tema) dilempar sambil lompat / jumpthrow (ms sejak tombol diklik).
 // Disamakan dengan sounds/flashbang-voice.mp3: suara lompat ~0.10 dtk dan mendarat ~0.68 dtk
@@ -212,21 +237,6 @@ function pickLine(kind) {
   return lines[Math.floor(Math.random() * lines.length)];
 }
 
-// Granat jatuh, meledak pelan, lalu desis panjang
-function playSmokePop() {
-  if (SFX_FILES.smokePop) {
-    playFile(SFX_FILES.smokePop);
-    return;
-  }
-  if (!audioCtx) return;
-  const now = audioCtx.currentTime;
-  playClink(now, 1300, 0.18);
-  playNoise({ when: now + 0.05, duration: 0.3, type: 'lowpass', freq: 700, volume: 0.6 });
-  playNoise({ when: now + 0.05, duration: 2.5, type: 'lowpass', freq: 250, volume: 0.3, attack: 0.05 });
-  playNoise({ when: now + 0.08, duration: 4.5, type: 'bandpass', freq: 3500, q: 0.7, volume: 0.22, attack: 0.06, flutter: 0.3 });
-  playNoise({ when: now + 0.08, duration: 3.5, type: 'bandpass', freq: 1200, q: 0.8, volume: 0.12, attack: 0.1, flutter: 0.2 });
-}
-
 // Flashbang: ledakan keras lalu telinga berdenging
 function playFlashBang() {
   if (SFX_FILES.flashBang) {
@@ -253,8 +263,8 @@ function playFlashBang() {
 }
 
 // Callout agen: rekaman kamu (line.src), atau text-to-speech browser
-function playVoice(line) {
-  if (audioCtx) {
+function playVoice(line, radioClick) {
+  if (radioClick && audioCtx) {
     // Bunyi "klik" radio sebelum bicara
     playNoise({ when: audioCtx.currentTime, duration: 0.08, type: 'bandpass', freq: 2000, q: 2, volume: 0.1 });
   }
@@ -371,7 +381,6 @@ function createSmokeScene() {
       if (run.kind === 'smoke') {
         run.popAt = run.skipped ? now - 1500 : now; // kalau di-skip, smoke langsung tebal
         run.puffs = spawnPuffs();
-        playSmokePop();
       } else {
         run.popAt = now;
         callout.style.opacity = '0';
@@ -447,11 +456,16 @@ function createSmokeScene() {
 
     const line = pickLine(kind);
     run.timers.push(
-      setTimeout(() => { showCallout(team, line.text); playVoice(line); }, kind === 'flash' ? JT.voice : T_WALK_END - 300),
-      setTimeout(playPinPull, T_WALK_END - (kind === 'flash' ? 100 : 0)),
-      setTimeout(playThrowWhoosh, kind === 'flash' ? JT.release : T_THROW),
+      setTimeout(() => { showCallout(team, line.text); playVoice(line, kind === 'flash'); }, kind === 'flash' ? JT.voice : T_VOICE),
       setTimeout(() => { callout.style.opacity = '0'; }, kind === 'smoke' ? T_MODAL + 800 : popTime)
     );
+    // Smoke cuma pakai suara "Smoke out", tanpa efek pin / lemparan / ledakan
+    if (kind === 'flash') {
+      run.timers.push(
+        setTimeout(playPinPull, T_WALK_END - 100),
+        setTimeout(playThrowWhoosh, JT.release)
+      );
+    }
 
     canvas.style.display = 'block';
     canvas.style.cursor = 'pointer';

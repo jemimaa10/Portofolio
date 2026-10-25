@@ -108,14 +108,19 @@ new IntersectionObserver(entries => {
 // ---- Animasi scroll ----
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
+  // HP: address bar muncul/hilang saat scroll mengubah tinggi layar, jangan hitung ulang semua trigger
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const character = document.getElementById('character');
   // Karakter yang sudah tidak kelihatan berhenti di-render (lihat js/character.js)
   const markHidden = () => character.classList.toggle('is-off', gsap.getProperty(character, 'opacity') < 0.02);
 
   const mm = gsap.matchMedia();
+  // Sama dengan breakpoint di css/main.css: tablet portrait (sampai 1199px) ikut layout HP
+  const MOBILE_LAYOUT = '(max-width: 900px), (max-width: 1199px) and (orientation: portrait)';
+  const DESKTOP_LAYOUT = '(min-width: 1200px), (min-width: 901px) and (orientation: landscape)';
 
-  mm.add('(min-width: 901px)', () => {
+  mm.add(DESKTOP_LAYOUT, () => {
     // Landing -> About: karakter geser ke kiri, teks About di kanan
     gsap.to(character, {
       xPercent: -25,
@@ -148,7 +153,7 @@ if (window.gsap && window.ScrollTrigger) {
     });
   });
 
-  mm.add('(max-width: 900px)', () => {
+  mm.add(MOBILE_LAYOUT, () => {
     // HP: karakter cuma di landing, memudar saat mulai scroll
     gsap.to(character, {
       opacity: 0,

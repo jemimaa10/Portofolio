@@ -67,7 +67,8 @@ try {
 if (renderer) start();
 
 function start() {
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  // HP & tablet: resolusi render dibatasi supaya ringan (layar kecil, beda ketajaman tidak kelihatan)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.matchMedia('(pointer: coarse)').matches ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -208,7 +209,8 @@ function start() {
   // ---- Kamera: setengah badan, dari kepala sampai perut ----
   function frameCamera(width, height) {
     camera.aspect = width / height;
-    const mobile = window.innerWidth <= 900;
+    // sama dengan breakpoint layout HP / tablet portrait di css/main.css
+    const mobile = window.matchMedia('(max-width: 900px), (max-width: 1199px) and (orientation: portrait)').matches;
     let visible = mobile ? VIEW_HEIGHT.mobile : VIEW_HEIGHT.desktop;
     // Layar sangat sempit: jaga supaya bahu tetap muat
     const minWidth = 0.9;
