@@ -73,6 +73,18 @@ const projectDetails = {
       'images/project6-4.png',
       'images/project6-5.png'
     ]
+  },
+  'proj-7': {
+    title: 'IPtasK',
+    category: 'Project 07 · Group Study Planner & Habit Tracker',
+    description: 'A group study planner and habit tracker where every task needs proof. The group leader assigns missions with deadlines, which can repeat daily or weekly for habits, or lets Gemini AI split the job fairly with staggered deadlines. Members upload proof of their work, and the other members review it by pressing Checked or Revision; a mission is only verified once everyone has checked it. Users get reminders before deadlines, and if someone misses a deadline or forgets to review, the IPtasK Bot automatically posts a confession in the group feed, with an AI-written roast caption. Each group also has a real-time chat and a member list. Built with Node.js, Express, Socket.IO, and SQLite (node:sqlite), with a vanilla JavaScript single-page app and the Gemini API.',
+    images: [
+      'images/project7-1.png',
+      'images/project7-2.png',
+      'images/project7-3.png',
+      'images/project7-4.png',
+      'images/project7-5.png'
+    ]
   }
 };
 
