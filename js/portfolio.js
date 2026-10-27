@@ -61,6 +61,18 @@ const projectDetails = {
       'images/project5-4.png',
       'images/project5-5.png'
     ]
+  },
+  'proj-6': {
+    title: 'Prima Jaya Teknik',
+    category: 'Project 06 · Company Website & Product Catalog',
+    description: 'A freelance company website for Prima Jaya Teknik, a distributor of industrial packing and gasket products in Jakarta. It has a bilingual (Indonesian and English) product catalog with more than 130 product pages grouped into Gasket and Gland Packing, product search, an about page, and a contact page with WhatsApp, phone, and email links. The back-end is built with ASP.NET Core (.NET 10) and SQLite: contact form messages are stored and forwarded by email over SMTP, contact clicks and page views are recorded as leads, and the contact and lead endpoints are rate limited.',
+    images: [
+      'images/project6-1.png',
+      'images/project6-2.png',
+      'images/project6-3.png',
+      'images/project6-4.png',
+      'images/project6-5.png'
+    ]
   }
 };
 
