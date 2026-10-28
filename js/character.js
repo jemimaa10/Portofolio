@@ -4,7 +4,7 @@
 
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { loadModel, cloneModel } from './models.js';
+import { loadModel, cloneModel } from './models.js?v=2';
 
 const MODEL_URL = 'assets/models/agent.glb';
 // Kalau model menghadap ke samping / belakang, putar di sini (radian), mis. Math.PI atau Math.PI / 2

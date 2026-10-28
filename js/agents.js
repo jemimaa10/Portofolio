@@ -6,7 +6,7 @@
 
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { loadModel, cloneModel } from './models.js';
+import { loadModel, cloneModel } from './models.js?v=2';
 
 // Model agen per tim. `yaw` = koreksi arah kalau model tidak menghadap ke depan (radian).
 // Kalau agent-t.glb belum ada, tim T otomatis pakai model CT.

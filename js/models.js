@@ -13,8 +13,13 @@ loader.setDRACOLoader(draco);
 
 const cache = new Map();
 
+// Perangkat sentuh (HP / tablet) pakai versi tekstur 1k WebP di assets/models/mobile/ (~5 MB total, bukan ~63 MB)
+const MOBILE = window.matchMedia('(pointer: coarse)').matches;
+const resolveUrl = url => (MOBILE ? url.replace('assets/models/', 'assets/models/mobile/') : url);
+
 // onProgress hanya dipakai oleh pemanggil pertama (yang benar-benar memicu download)
 export function loadModel(url, onProgress) {
+  url = resolveUrl(url);
   if (!cache.has(url)) {
     cache.set(url, new Promise((resolve, reject) => loader.load(url, resolve, onProgress, reject)));
   }
